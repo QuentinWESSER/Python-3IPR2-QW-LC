@@ -13,9 +13,7 @@ def main():
     print("No key found in file")
     return
 
-  var = QTEMP.VIDEOGAME_QUERRY_VAR
-  var['IdRange'] = [1,2,3,4]
-  print(API.sendRequest(key, QTEMP.VIDEOGAME_QUERRY, var))
+  print(API.fetchVideoGame(key, 50))
 
 if __name__ == '__main__':
   main()
