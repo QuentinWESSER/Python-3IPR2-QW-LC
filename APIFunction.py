@@ -40,11 +40,19 @@ def sendRequest(key, QUERRY, VAR, second=1):
 
 def SaveVideoGameAsCSV(key, num):
     dict = fetchVideoGame(key, num)
-    field_names = ['id', 'name', 'image']
+    betterDict = dict['data']['videogames']['nodes'].copy()
+
+    for element in dict['data']['videogames']['nodes']:
+        if (len(element['images']) == 0):
+            betterDict['images'] = 'None'
+        else : 
+            betterDict['images'] = element['images'][0]['url']
+
+    field_names = ['id', 'name', 'images']
     with open('Games.csv', 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames = field_names, delimiter=';')
         writer.writeheader()
-        writer.writerows(dict['data']['videogames']['nodes'])
+        writer.writerows(betterDict)
 
 def fetchVideoGame(key, num): #return a dict with VideoGames
     var = QTEMP.VIDEOGAME_QUERRY_VAR
