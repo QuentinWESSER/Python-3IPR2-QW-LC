@@ -43,6 +43,6 @@ def SaveVideoGameAsCSV(key, num):
 
 def fetchVideoGame(key, num): #return a dict with VideoGames
     var = QTEMP.VIDEOGAME_QUERRY_VAR
-    var['IdRange'] = list(range(0,50))
+    var['IdRange'] = list(range(2000,2500))
     return sendRequest(key, QTEMP.VIDEOGAME_QUERRY, var)
 
