@@ -16,3 +16,7 @@ query GetVideoGame($IdRange: [ID]) {
   }
 }
 """
+
+VIDEOGAME_QUERRY_VAR = {
+  "IdRange": []
+}
