@@ -13,7 +13,7 @@ def main():
     print("No key found in file")
     return
 
-  print(API.fetchVideoGame(key, 50))
+  API.SaveVideoGameAsCSV(key, 100)
 
 if __name__ == '__main__':
   main()
