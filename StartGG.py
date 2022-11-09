@@ -15,7 +15,7 @@ def main():
 
   var = QTEMP.VIDEOGAME_QUERRY_VAR
   var['IdRange'] = [1,2,3,4]
-  API.sendRequest(key, QTEMP.VIDEOGAME_QUERRY, var)
+  API.fetchVideoGame(key, 50)
 
 if __name__ == '__main__':
   main()
