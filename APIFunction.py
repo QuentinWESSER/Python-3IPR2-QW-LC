@@ -37,7 +37,7 @@ def sendRequest(key, QUERRY, VAR, second=1):
 def Replace(element, listreplace):
     for replaceTerm in listreplace:
         if(replaceTerm[0] in element):
-            return element.replace(replaceTerm[0], replaceTerm[1])
+            element = element.replace(replaceTerm[0], replaceTerm[1])
     return element
     
 def SaveVideoGameAsCSV(key, num):
@@ -45,21 +45,7 @@ def SaveVideoGameAsCSV(key, num):
     if VideoGamedict == None:
         return
     betterDict = VideoGamedict.copy()
-
-    #Remove unwanted accent in the name of the videogame
-    #Add any other unicode if needed
-    for element in betterDict:
-        element['name'] = Replace(element['name'],[
-            (u'\u014d', 'o'),
-            (u'\u014c', 'O'),
-            (u'\u016b', 'u'),
-            (u'\u2153', ''),
-            (u'\ufeff', ''),
-            (u'\u2665', ''),
-            (u'\u266e', ''),
-            (u'\u016b', 'u')
-        ])
-
+    
     #get only one image for each video games
     for i, element in enumerate(VideoGamedict):
         if (len(element['images']) == 0):
@@ -69,7 +55,7 @@ def SaveVideoGameAsCSV(key, num):
 
     #write the content into an csv
     field_names = ['id', 'name', 'images']
-    with open('Games.csv', 'w') as csvfile:
+    with open('Games.csv', 'w', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames = field_names, delimiter=';')
         writer.writeheader()
         writer.writerows(betterDict)
