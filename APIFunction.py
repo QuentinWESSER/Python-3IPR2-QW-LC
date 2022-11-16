@@ -76,7 +76,7 @@ def fetchVideoGame(key, num): #return a dict with VideoGames
     return NewList
 
 def returnCityNames(input, distMax):
-    result = [[None,0,0]]*10
+    result = [[None,0,0,0]]*10
     with open('villes_france.csv', 'r', encoding='utf-8') as csvfile:
         r = csv.reader(csvfile, delimiter=',')
         for row in r:
@@ -88,7 +88,7 @@ def returnCityNames(input, distMax):
                     break
             if (i != -1):
                 result.pop()
-                result.insert(i, [row[5],ratio, row[0]])
+                result.insert(i, [row[5],ratio, row[20], row[19]])
     indexs = []
     for index, element in enumerate(result):
         if(lev.distance(element[0],input) > distMax):
