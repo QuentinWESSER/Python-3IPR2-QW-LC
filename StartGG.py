@@ -12,6 +12,9 @@ def main():
   if (key == None):
     print("No key found in file")
     return
+  
+
+  print(API.returnCityNames('Bussy Saint',10))
 
   
 

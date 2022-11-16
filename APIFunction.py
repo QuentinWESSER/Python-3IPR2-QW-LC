@@ -3,6 +3,7 @@ import requests
 import time
 import csv
 import QUERRY_TEMPLATE as QTEMP
+import Levenshtein as lev
 
 url = "https://api.start.gg/gql/alpha"
 
@@ -74,3 +75,35 @@ def fetchVideoGame(key, num): #return a dict with VideoGames
     NewList = sorted(List, key=lambda videogame: videogame['id'])
     return NewList
 
+def returnCityNames(input, distMax):
+    result = [[None,0,0]]*10
+    with open('villes_france.csv', 'r', encoding='utf-8') as csvfile:
+        r = csv.reader(csvfile, delimiter=',')
+        for row in r:
+            ratio = lev.ratio(input.lower(),row[4])
+            i = -1
+            for index, element in enumerate(result):
+                if (element[1] < ratio):
+                    i = index
+                    break
+            if (i != -1):
+                result.pop()
+                result.insert(i, [row[5],ratio, row[0]])
+    indexs = []
+    for index, element in enumerate(result):
+        if(lev.distance(element[0],input) > distMax):
+            indexs.append(index)
+    
+    if (indexs):
+        for element in indexs.reverse():
+            result.pop(element)
+    return result
+
+
+        
+    
+        
+                
+
+
+    
