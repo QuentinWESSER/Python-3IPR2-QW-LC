@@ -8,32 +8,31 @@ import Levenshtein as lev
 url = "https://api.start.gg/gql/alpha"
 
 def sendRequest(key, QUERRY, VAR, second=1):
-  header = {"Authorization": "Bearer " + key}
-  query = QUERRY
-  variables = VAR
+    header = {"Authorization": "Bearer " + key}
+    query = QUERRY
+    variables = VAR
 
-  jsonRequest = {"query":query,"variables":variables}
+    jsonRequest = {"query":query,"variables":variables}
 
+    req = requests.post( url = url,json=jsonRequest,headers=header)
 
-  req = requests.post( url = url,json=jsonRequest,headers=header)
+    #From https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
-  #From https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-
-  if(req.status_code == 429):
-    if(second < 20):
-        time.sleep(second)
-        return sendRequest(key, QUERRY, VAR, second*2)
-    else:
-        print("Error Too Many Request" + str(req.status_code))
+    if(req.status_code == 429):
+        if(second < 20):
+            time.sleep(second)
+            return sendRequest(key, QUERRY, VAR, second*2)
+        else:
+            print("Error Too Many Request" + str(req.status_code))
+            return
+    elif(500 <= req.status_code < 600):
+        print("Server Error Responses" + str(req.status_code))
         return
-  elif(500 <= req.status_code < 600):
-    print("Server Error Responses" + str(req.status_code))
-    return
-  elif(200 <= req.status_code < 300):
-    return req.json()
-  else:
-    print("Unknow Error" + str(req.status_code))
-    return
+    elif(200 <= req.status_code < 300):
+        return req.json()
+    else:
+        print("Unknow Error" + str(req.status_code))
+        return
 
 def Replace(element, listreplace):
     for replaceTerm in listreplace:
@@ -75,6 +74,34 @@ def fetchVideoGame(key, num): #return a dict with VideoGames
     NewList = sorted(List, key=lambda videogame: videogame['id'])
     return NewList
 
+def fectTournamentList(key, Id, Latitude, Longitude, Range, StartDate, EndDate):
+    var = QTEMP.VIDEOGAME_QUERRY_VAR
+    var['IdRange'] = [Id]
+    var['Loca'] = str(Latitude) + "," + str(Longitude)
+    var['Range'] = str(Range) + "km"
+    var['Start'] = StartDate
+    var['End'] = EndDate
+    var['Page'] = 1
+    Tournaments_dict = []
+    Page = 0
+    try:
+        response = sendRequest(key, QTEMP.TOURNAMENTS_QUERRY, var)
+        Tournaments_dict += response['data']['tournaments']['nodes']
+        Page = response['data']['tournaments']['pageInfo']['totalPages']
+    except:
+        print("Unable to retrieve tournaments")
+        return
+
+    for i in range(1, Page):
+        var['Page'] = i+1
+        try:
+            Tournaments_dict += sendRequest(key, QTEMP.TOURNAMENTS_QUERRY, var)['data']['tournaments']['nodes']
+        except:
+            print("Unable to retrieve tournaments")
+            return
+    
+    return Tournaments_dict
+    
 def returnCityNames(input, distMax):
     result = [[None,0,0,0]]*10
     with open('villes_france.csv', 'r', encoding='utf-8') as csvfile:
