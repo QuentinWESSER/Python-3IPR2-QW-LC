@@ -12,6 +12,9 @@ def main():
   if (key == None):
     print("No key found in file")
     return
+  
+
+  print(API.returnCityNames('Bussy Saint',10))
 
   print(API.fectTournamentList(key, 1386, 48.861490, 2.339123, 200, 1637061337, 1667940102))
 
