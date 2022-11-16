@@ -23,9 +23,10 @@ VIDEOGAME_QUERRY_VAR = {
 }
 
 TOURNAMENTS_QUERRY = """
-query GetVideoGame($IdRange: [ID], $Loca: String, $Range: String, $Start: Timestamp, $End: Timestamp) {
+query GetVideoGame($IdRange: [ID], $Loca: String, $Range: String, $Start: Timestamp, $End: Timestamp, $Page: Int) {
   tournaments(query: {
-    perPage : 500
+    perPage : 500,
+    page : $Page
     filter: {
       videogameIds: $IdRange,
       location: {
@@ -51,5 +52,6 @@ TOURNAMENTS_QUERRY_VAR = {
   "Loca": "",
   "Range": "" ,
   "Start": 0, 
-  "End": 0
+  "End": 0,
+  "Page": 0
 }

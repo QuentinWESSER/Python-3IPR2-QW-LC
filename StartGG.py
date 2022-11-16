@@ -13,7 +13,7 @@ def main():
     print("No key found in file")
     return
 
-  
+  print(API.fectTournamentList(key, 1386, 48.861490, 2.339123, 200, 1637061337, 1667940102))
 
 if __name__ == '__main__':
   main()
