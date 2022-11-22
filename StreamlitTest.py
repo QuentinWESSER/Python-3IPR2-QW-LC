@@ -1,4 +1,5 @@
 import streamlit as sl
 
 sl.write("Test Write")
-sl.dataframe(["Some Text element", 0, True])    
+select = sl.selectbox("Villes", ["Select a number"] + list(range(0,5)))
+sl.write(select)
