@@ -44,6 +44,9 @@ def SaveVideoGameAsCSV(key, num):
     VideoGamedict = fetchVideoGame(key, num)
     if VideoGamedict == None:
         return
+    if isinstance(VideoGamedict, str):
+        return VideoGamedict
+
     betterDict = VideoGamedict.copy()
     
     #get only one image for each video games
@@ -68,8 +71,7 @@ def fetchVideoGame(key, num): #return a dict with VideoGames
         try:
             List += sendRequest(key, QTEMP.VIDEOGAME_QUERRY, var)['data']['videogames']['nodes']
         except:
-            print("Unable to retrieve data for the VideoGame")
-            return
+            return "Unable to retrieve data for the VideoGame"
         
     NewList = sorted(List, key=lambda videogame: videogame['id'])
     return NewList
@@ -89,16 +91,14 @@ def fectTournamentList(key, Id, Latitude, Longitude, Range, StartDate, EndDate):
         Tournaments_dict += response['data']['tournaments']['nodes']
         Page = response['data']['tournaments']['pageInfo']['totalPages']
     except:
-        print("Unable to retrieve tournaments")
-        return
+        return "Unable to retrieve tournaments"
 
     for i in range(1, Page):
         var['Page'] = i+1
         try:
             Tournaments_dict += sendRequest(key, QTEMP.TOURNAMENTS_QUERRY, var)['data']['tournaments']['nodes']
         except:
-            print("Unable to retrieve tournaments")
-            return
+            return "Unable to retrieve tournaments"
     
     return Tournaments_dict
     
@@ -125,8 +125,6 @@ def returnCityNames(input, distMax):
         for element in indexs.reverse():
             result.pop(element)
     return result
-
-
         
     
         
