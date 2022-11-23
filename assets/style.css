@@ -1,0 +1,51 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.sidebar{
+    height: 95%; /* Full-height: remove this if you want "auto" height */
+    width: 700px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 1%; /* Stay at the top */
+    left: 20px;
+    right: 20px;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    background-color: #F0F2F6;
+    border-radius: 50px;
+    padding: 16px 20px 16px 36px;
+}
+
+.rightbar{
+    margin-left: 800px;
+}
+
+.searchbar{
+    width: 100%;
+    columns: 2;
+    display: flex;
+    align-items: center;
+}
+
+.searchbar-left{
+    width: 50%;
+}
+
+.searchbar-right{
+    width: 50%;
+}
+
+.Input{
+    height: 30px;
+    width: 90%;
+    border-radius: 10px;
+    border-width: 3px;
+    border-color: #F63366;
+}
+
+input[type="text"]
+{
+    font-size:24px;
+    font-family: 'Roboto', sans-serif;
+}
