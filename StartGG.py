@@ -1,22 +1,31 @@
 import APIFunction as API
 import QUERRY_TEMPLATE as QTEMP
+import streamlit as sl
+from SL_PAGES import Page, Test
 
 def main():
-  key = None
-  try : 
-    with open ("API_TEST_TOKEN.txt", mode='r', encoding='utf_8') as f:
-      key = f.readline()
-  except : 
-    print("Unable to find the keyfile")
-    return
-  if (key == None):
-    print("No key found in file")
-    return
+  if "key" not in sl.session_state:
+    key = None
+    try : 
+      with open ("API_TEST_TOKEN.txt", mode='r', encoding='utf_8') as f:
+        key = f.readline()
+    except : 
+      sl.warning('Unable to find the keyfile', icon="❌")
+      return
+    if (key == None):
+      sl.warning('No key found in file', icon="❌")
+      return
+    sl.session_state["key"] = key
   
+  if "page" not in sl.session_state:
+    sl.session_state['page'] = 'home'
 
-  print(API.returnCityNames('Bussy Saint',10))
-
-  print(API.fectTournamentList(key, 1386, 48.861490, 2.339123, 100, 1637061337, 1667940102))
+  Pages_Dict = {
+    'home': Page,
+    'test': Test
+  }
+  
+  Pages_Dict[sl.session_state['page']].main()
 
 if __name__ == '__main__':
   main()
