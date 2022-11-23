@@ -124,13 +124,28 @@ def returnCityNames(input, distMax):
     if (indexs):
         for element in indexs.reverse():
             result.pop(element)
-    return result
+    return result    
 
-
-        
+def ReturnVideoNames(input, distMax):
+    result = [[None,0,0,0]]
+    with open('Games.csv', 'r', encoding='utf-8') as csvfile:
+        r = csv.reader(csvfile, delimiter=',')
+        for row in r:
+            ratio = lev.ratio(input.lower(),row[4])
+            i = -1
+            for index, element in enumerate(result):
+                if (element[1] < ratio):
+                    i = index
+                    break
+            if (i != -1):
+                result.pop()
+                result.insert(i, [row[5],ratio, row[20], row[19]])
+    indexs = []
+    for index, element in enumerate(result):
+        if(lev.distance(element[0],input) > distMax):
+            indexs.append(index)
     
-        
-                
-
-
-    
+    if (indexs):
+        for element in indexs.reverse():
+            result.pop(element)
+    return result    
