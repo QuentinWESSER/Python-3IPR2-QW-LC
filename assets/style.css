@@ -40,12 +40,21 @@ body {
     height: 30px;
     width: 90%;
     border-radius: 10px;
-    border-width: 3px;
-    border-color: #F63366;
+    border: 1px solid #F63366;
 }
 
-input[type="text"]
+.Range{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+input
 {
     font-size:24px;
     font-family: 'Roboto', sans-serif;
+}
+
+h3{
+    padding: 0px 20px;
 }

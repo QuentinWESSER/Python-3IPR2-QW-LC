@@ -38,5 +38,9 @@ def LoadKey():
     return ['No key found in file ❌']
   return [key]
 
+def main():
+  print(API.returnCityNames("Bussy", 15))
+
 if __name__ == '__main__':
-  app.run_server()
+  #app.run_server()
+  main()
