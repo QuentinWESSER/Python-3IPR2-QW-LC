@@ -103,7 +103,7 @@ def fectTournamentList(key, Id, Latitude, Longitude, Range, StartDate, EndDate):
     return Tournaments_dict
     
 def returnCityNames(input, distMax):
-    result = [[None,0,0,0]]*10
+    result = [[None,0,0,0]]
     with open('villes_france.csv', 'r', encoding='utf-8') as csvfile:
         r = csv.reader(csvfile, delimiter=',')
         for row in r:
