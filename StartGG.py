@@ -2,6 +2,8 @@ import APIFunction as API
 import QUERRY_TEMPLATE as QTEMP
 from dash import Output, dcc, Dash, html
 import dash
+import plotly.express as px
+import pandas as pd
 
 app = Dash(__name__, use_pages=True)
 
@@ -39,7 +41,8 @@ def LoadKey():
   return [key]
 
 def main():
-  print(API.returnCityNames("Bussy", 15))
+  data = API.fectTournamentList(LoadKey()[0], [1], "48.866667", "2.333333", "200", 1666811322, 1669493322)
+  print(API.ReverseGeoCoding(data[0]['venueAddress']))
 
 if __name__ == '__main__':
   #app.run_server()
