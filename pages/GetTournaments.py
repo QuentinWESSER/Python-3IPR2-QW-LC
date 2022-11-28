@@ -45,8 +45,8 @@ layout = html.Div(children=[
     ]),
 
     html.Div(className="rightbar", children=[
-        html.H1("this is main"),
         dcc.Loading(children=[
+            html.H1("Missing information", id='status'),
             dcc.Graph(id='graph'),
             dcc.Graph(id='earth-graph'),
         ])
@@ -102,6 +102,7 @@ def LoadGames(game_name, previous_game):
     return ['No Result']
 
 @callback(
+    Output('status', 'children'),
     Output("graph","figure"),
     Output("earth-graph","figure"),
     Input("date-picker", "start_date"),
@@ -113,7 +114,7 @@ def LoadGames(game_name, previous_game):
 )
 def LoadGraph(start_date, end_date, games, city, range, key):
     if(start_date is None or end_date is None or games is None or city is None or range is None or key is None):
-        return px.bar({}), px.bar({})
+        return 'Missing informations', px.bar({}), px.bar({})
     
     lattitude = ''
     longitude = ''
@@ -134,6 +135,8 @@ def LoadGraph(start_date, end_date, games, city, range, key):
     endAt = round(endAt)
     startAt = round(startAt)
     data = API.fectTournamentList(key[0], GameIdList, lattitude, longitude, range, startAt, endAt, endAt - startAt < 5_000_000 )
+    if isinstance(data, str):
+        return data, px.bar({}), px.bar({})
     for tournament in data:
         for Game in GamesBuffer:
             if tournament['GameID'] == int(Game[0]):
@@ -152,9 +155,9 @@ def LoadGraph(start_date, end_date, games, city, range, key):
         tournament['lattitude'] = coordinates[1]
         tournament['longitude'] = coordinates[0]
         
-    df2 = pd.DataFrame(data, columns=['id', 'name', 'Date', 'Game', 'lattitude', 'longitude', 'size'])
-    fig2 = px.scatter_mapbox(df2, lat='lattitude', lon='longitude', color_discrete_sequence=["fuchsia"], zoom=8, mapbox_style="open-street-map", size='size', hover_data=['name', 'Date', 'Game'])
+    df2 = pd.DataFrame(data, columns=['id', 'name', 'Date', 'Game', 'lattitude', 'longitude'])
+    fig2 = px.scatter_mapbox(df2, lat='lattitude', lon='longitude', color_discrete_sequence=["fuchsia"], zoom=8, mapbox_style="open-street-map", hover_data=['name', 'Date', 'Game']).update_traces(hovertemplate='col1=%{y}<br><extra></extra>')
     
-    return fig, fig2
+    return 'Tournaments', fig, fig2
 
 
