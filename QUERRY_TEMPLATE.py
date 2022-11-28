@@ -38,7 +38,10 @@ query GetVideoGame($IdRange: [ID], $Loca: String, $Range: String, $Start: Timest
     }
   }){
     nodes {
-      id
+      id,
+      name,
+      endAt,
+      venueAddress,
     },
     pageInfo {
       totalPages

@@ -9,25 +9,12 @@ app = Dash(__name__, use_pages=True)
 
 app.layout = html.Div([
   dcc.Store(id="key-data"),
-	html.H1('Multi-page app with Dash Pages'),
-    html.Div(
-        [
-            html.Div(
-                dcc.Link(
-                    f"{page['name']} - {page['path']}", href=page["relative_path"]
-                )
-            )
-            for page in dash.page_registry.values()
-        ]
-    ),
-    html.Div(id="container"),
-    html.Button("ratio" , id="btn", disabled=True),
+  html.Button("ratio" , id="btn", disabled=True),
 	dash.page_container
 ])
 
 @app.callback(
   Output("key-data", "data"),
-  Output("container", "children"),
   Input("btn", "n_clicks"),
   State("key-data", "data")
 )

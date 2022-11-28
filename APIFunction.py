@@ -4,6 +4,7 @@ import time
 import csv
 import QUERRY_TEMPLATE as QTEMP
 import Levenshtein as lev
+import pandas as pd
 
 url = "https://api.start.gg/gql/alpha"
 
@@ -33,6 +34,11 @@ def sendRequest(key, QUERRY, VAR, second=1):
     else:
         print("Unknow Error" + str(req.status_code))
         return
+
+def ReverseGeoCoding(adress):
+    gov_url = "https://api-adresse.data.gouv.fr/search/?q=" + adress.replace(" ", "+")
+    req = requests.get(url=gov_url, headers=None, json=None)
+    return req.json()['features'][0]['geometry']['coordinates']
 
 def Replace(element, listreplace):
     for replaceTerm in listreplace:
@@ -76,7 +82,16 @@ def fetchVideoGame(key, num): #return a dict with VideoGames
     NewList = sorted(List, key=lambda videogame: videogame['id'])
     return NewList
 
-def fectTournamentList(key, Id, Latitude, Longitude, Range, StartDate, EndDate):
+def fectTournamentList(key, Ids, Latitude, Longitude, Range, StartDate, EndDate, Day=True):
+    result = []
+    for id in Ids:
+        response = fetchTournamentsWithOneGame(key, id, Latitude, Longitude, Range, StartDate, EndDate, Day)
+        if isinstance(response, str):
+            return "Unable to retrieve tournaments"
+        result += response
+    return result
+
+def fetchTournamentsWithOneGame(key, Id, Latitude, Longitude, Range, StartDate, EndDate, Day=True):
     var = QTEMP.VIDEOGAME_QUERRY_VAR
     var['IdRange'] = [Id]
     var['Loca'] = str(Latitude) + "," + str(Longitude)
@@ -100,25 +115,48 @@ def fectTournamentList(key, Id, Latitude, Longitude, Range, StartDate, EndDate):
         except:
             return "Unable to retrieve tournaments"
     
-    return Tournaments_dict
+    if Day:
+        for element in Tournaments_dict:
+            element['Date'] = pd.to_datetime(int(element['endAt']) // 86400 * 86400, unit='s')
+    else:
+        for element in Tournaments_dict:
+            element['Date'] = pd.to_datetime(int(element['endAt']) // 604800 * 604800, unit='s')
     
+    for Tournaments in Tournaments_dict:
+        Tournaments['GameID'] = Id
+    return Tournaments_dict
+
 def returnCityNames(input, distMax):
-    result = [[None,0,0,0,0]]*10
+    Cities = []
     with open('villes_france.csv', 'r', encoding='utf-8') as csvfile:
-        r = csv.reader(csvfile, delimiter=',')
-        for row in r:
-            ratio = lev.ratio(input.lower(),row[4])
-            i = -1
-            for index, element in enumerate(result):
-                if (element[1] < ratio):
-                    i = index
-                    break
-            if (i != -1):
-                result.pop()
-                result.insert(i, [row[5],ratio, row[1], row[20], row[19]])
+        result = FindClosetList(csv.reader(csvfile, delimiter=','), input, 10, 4, distMax)
+        for city in result:
+            Cities.append([city[0][5], city[0][1], city[0][20], city[0][19]])
+    return Cities
+
+def returnVideoGames(input, distMax):
+    Games = []
+    with open('games.csv', 'r', encoding='utf-8') as csvfile:
+        result = FindClosetList(csv.DictReader(csvfile, delimiter=';'), input, 10, 'name', distMax)
+        for game in result:
+            Games.append([game[0]['id'], game[0]['name'], game[0]['images']])
+    return Games
+
+def FindClosetList(dict, input, nElements, key, distMax):
+    result = [[None, 0]] * nElements
+    for row in dict:
+        ratio = lev.ratio(input.lower(), row[key])
+        i = -1
+        for index, element in enumerate(result):
+            if (element[1] < ratio):
+                i = index
+                break
+        if (i != -1):
+            result.pop()
+            result.insert(i, [row, ratio])
     indexs = []
     for index, element in enumerate(result):
-        if(lev.distance(element[0],input) > distMax):
+        if(lev.distance(element[0][key],input) > distMax):
             indexs.append(index)
     
     if (len(indexs) != 0):
