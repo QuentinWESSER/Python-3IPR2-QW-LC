@@ -5,7 +5,6 @@ import datetime
 import time
 import plotly.express as px
 import pandas as pd
-import GeoJson
 
 dash.register_page(__name__)
 

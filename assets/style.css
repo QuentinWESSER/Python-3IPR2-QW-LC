@@ -1,5 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
+    color: #0d0d0d;
 }
 
 .sidebar{
@@ -12,7 +13,7 @@ body {
     right: 20px;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
-    background-color: #F0F2F6;
+    background-color: #fef9f8;
     border-radius: 50px;
     padding: 16px 20px 16px 36px;
 }
@@ -34,13 +35,14 @@ body {
 
 .searchbar-right{
     width: 50%;
+    border : 1px solid red;
 }
 
 .Input{
     height: 30px;
     width: 90%;
     border-radius: 10px;
-    border: 1px solid #F63366;
+    border: 1px solid grey;
 }
 
 .Range{
