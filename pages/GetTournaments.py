@@ -45,6 +45,7 @@ layout = html.Div(children=[
     ]),
 
     html.Div(className="rightbar", children=[
+        dcc.Dropdown(['Line Graph', 'Earth'], 'Line Graph', id='fig'),
         dcc.Loading(children=[
             html.H1("Missing information", id='status'),
             dcc.Graph(id='graph'),
@@ -104,17 +105,17 @@ def LoadGames(game_name, previous_game):
 @callback(
     Output('status', 'children'),
     Output("graph","figure"),
-    Output("earth-graph","figure"),
     Input("date-picker", "start_date"),
     Input("date-picker", "end_date"),
     Input("games", "value"),
     Input("cities", "value"),
     Input("range", "value"),
+    Input("fig", "value"),
     State("key-data", "data")
 )
-def LoadGraph(start_date, end_date, games, city, range, key):
+def LoadGraph(start_date, end_date, games, city, range, selected, key):
     if(start_date is None or end_date is None or games is None or city is None or range is None or key is None):
-        return 'Missing informations', px.bar({}), px.bar({})
+        return 'Missing informations', px.bar({})
     
     lattitude = ''
     longitude = ''
@@ -136,28 +137,28 @@ def LoadGraph(start_date, end_date, games, city, range, key):
     startAt = round(startAt)
     data = API.fectTournamentList(key[0], GameIdList, lattitude, longitude, range, startAt, endAt, endAt - startAt < 5_000_000 )
     if isinstance(data, str):
-        return data, px.bar({}), px.bar({})
+        return data, px.bar({})
     for tournament in data:
         for Game in GamesBuffer:
             if tournament['GameID'] == int(Game[0]):
                 tournament['Game'] = Game[1]
     
-    #Line Chart
-    df1 = pd.DataFrame(data, columns=['id', 'name', 'Date', 'Game'])
-    Title = 'Number of tournaments per day'
-    if endAt - startAt < 5_000_000:
-        Title = 'Number of tournaments per week'
-    fig = px.bar(df1, x='Date', hover_data=['name'], color='Game', title=Title)
+    if selected == 'Line Graph':
+        #Line Chart
+        df = pd.DataFrame(data, columns=['id', 'name', 'Date', 'Game'])
+        Title = 'Number of tournaments per day'
+        if endAt - startAt < 5_000_000:
+            Title = 'Number of tournaments per week'
+        return 'Tournaments', px.bar(df, x='Date', hover_data=['name'], color='Game', title=Title)
+    else:
+        #Map chart
+        for tournament in data:
+            coordinates = API.ReverseGeoCoding(tournament['venueAddress'])
+            tournament['lattitude'] = coordinates[1]
+            tournament['longitude'] = coordinates[0]
 
-    #Map chart
-    for tournament in data:
-        coordinates = API.ReverseGeoCoding(tournament['venueAddress'])
-        tournament['lattitude'] = coordinates[1]
-        tournament['longitude'] = coordinates[0]
-        
-    df2 = pd.DataFrame(data, columns=['id', 'name', 'Date', 'Game', 'lattitude', 'longitude'])
-    fig2 = px.scatter_mapbox(df2, lat='lattitude', lon='longitude', color_discrete_sequence=["fuchsia"], zoom=8, mapbox_style="open-street-map", hover_data=['name', 'Date', 'Game']).update_traces(hovertemplate='col1=%{y}<br><extra></extra>')
+        df = pd.DataFrame(data, columns=['id', 'name', 'Date', 'Game', 'lattitude', 'longitude'])
+        return 'Tournaments', px.scatter_mapbox(df, lat='lattitude', lon='longitude', color_discrete_sequence=["fuchsia"], zoom=8, mapbox_style="open-street-map", hover_data=['name', 'Date', 'Game'])
     
-    return 'Tournaments', fig, fig2
 
 

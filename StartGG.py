@@ -41,8 +41,8 @@ def LoadKey():
   return [key]
 
 def main():
-  data = API.fectTournamentList(LoadKey()[0], [1], "48.866667", "2.333333", "200", 1666811322, 1669493322)
-  print(API.ReverseGeoCoding(data[0]['venueAddress']))
+  data = API.fectTournamentList('ee0b0c0a38fdcc316fc86d35b0187a4e',[1386], '48.86', '2.34445', 20, 1667257200, 1669762800, True)
+  print(data)
 
 if __name__ == '__main__':
   #app.run_server()
