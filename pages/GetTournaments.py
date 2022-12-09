@@ -13,34 +13,45 @@ GamesBuffer = []
 
 layout = html.Div(children=[
     dcc.Store("key-data"),
-
-    html.Div(className="sidebar", children=[
+    html.Div(className="topbar", children=[
         html.H1("Tournaments"),
-        html.H2("Select a location"),
-        html.Div(className="searchbar", children=[
-            html.Div(className="searchbar-left", children=[
-                dcc.Input(placeholder="Name of the city", type='text', id="enter-city", className="Input")
+    ]),
+    html.Div(className="sidebar", children=[
+        html.Div(className="block1", children=[
+            html.H2("Select a location"),
+            html.Div(className="searchbar", children=[
+                html.Div(className="searchbar-left", children=[
+                    dcc.Input(placeholder="Name of the city", type='text', id="enter-city", className="Input")
+                ]),
+                html.Div(className="searchbar-right", children=[
+                    dcc.Dropdown(id="cities")
+                ]),
             ]),
-            html.Div(className="searchbar-right", children=[
-                dcc.Dropdown(id="cities")
+            html.Div(className="Range", children=[
+                dcc.Input(placeholder="Range", type='number', id="range", className="Input"),
+                html.H3("Km")
             ]),
         ]),
-        html.Div(className="Range", children=[
-            dcc.Input(placeholder="Range", type='number', id="range", className="Input"),
-            html.H3("Km")
+        html.Br(),
+        html.Div(className="block2", children=[
+            html.H2("Select a videogame"),
+            html.Div(className="DropDown", children=[
+                dcc.Input(placeholder="Name of the game", type='text', id="enter-game", className="Input"),
+                html.Br(),
+                html.Br(),
+                html.Div(className="Select", children=[
+                    dcc.Dropdown(id="games", multi=True)
+                ]),
+            ]),
+            html.Br(),
         ]),
         html.Br(),
-        html.H2("Select a videogame"),
-        html.Div(className="DropDown", children=[
-            dcc.Input(placeholder="Name of the game", type='text', id="enter-game", className="Input"),
-            html.Br(),
-            html.Br(),
-            dcc.Dropdown(id="games", multi=True)
+        html.Div(className="block3", children=[
+            html.H2("Select a period of time"),
+            html.Div(className="Picker", children=[
+                dcc.DatePickerRange(id="date-picker")
+            ]),
         ]),
-        html.Br(),
-        html.Br(),
-        html.H2("Select a period of time"),
-        dcc.DatePickerRange(id="date-picker")
     ]),
 
     html.Div(className="rightbar", children=[
