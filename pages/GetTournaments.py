@@ -10,6 +10,7 @@ dash.register_page(__name__)
 
 CitiesBuffer = []
 GamesBuffer = []
+TournamentsBuffer = []
 
 layout = html.Div(children=[
     dcc.Store("key-data"),
@@ -48,8 +49,11 @@ layout = html.Div(children=[
         dcc.Loading(children=[
             html.H1("Missing information", id='status'),
             dcc.Graph(id='graph'),
-            dcc.Graph(id='earth-graph'),
-        ])
+        ]),
+        html.H1("Name : ", id="name"),
+        html.H2("Adresse : ", id="adress"),
+        html.H3("Date : ", id="date"),
+        html.H3("Id : ", id="id")
     ]),
 ])
 
@@ -135,6 +139,8 @@ def LoadGraph(start_date, end_date, games, city, range, selected, key):
     endAt = round(endAt)
     startAt = round(startAt)
     data = API.fectTournamentList(key[0], GameIdList, lattitude, longitude, range, startAt, endAt, endAt - startAt < 5_000_000 )
+    global TournamentsBuffer
+    TournamentsBuffer = data
     if isinstance(data, str):
         return data, px.bar({})
     for tournament in data:
@@ -148,7 +154,7 @@ def LoadGraph(start_date, end_date, games, city, range, selected, key):
         Title = 'Number of tournaments per day'
         if endAt - startAt < 5_000_000:
             Title = 'Number of tournaments per week'
-        return 'Tournaments', px.bar(df, x='Date', hover_data=['name'], color='Game', title=Title)
+        return 'Tournaments', px.bar(df, x='Date', hover_data=['name', 'id'], color='Game', title=Title)
     else:
         #Map chart
         for tournament in data:
@@ -157,7 +163,21 @@ def LoadGraph(start_date, end_date, games, city, range, selected, key):
             tournament['longitude'] = coordinates[0]
 
         df = pd.DataFrame(data, columns=['id', 'name', 'Date', 'Game', 'lattitude', 'longitude'])
-        return 'Tournaments', px.scatter_mapbox(df, lat='lattitude', lon='longitude', color_discrete_sequence=["fuchsia"], zoom=8, mapbox_style="open-street-map", hover_data=['name', 'Date', 'Game'])
+        return 'Tournaments', px.scatter_mapbox(df, lat='lattitude', lon='longitude', color_discrete_sequence=["fuchsia"], zoom=8, mapbox_style="open-street-map", hover_data=['name', 'id', 'Date', 'Game'])
     
-
-
+@callback(
+    Output('name', 'children'),
+    Output('adress', 'children'),
+    Output('date', 'children'),
+    Output('id', 'children'),
+    Input('graph', 'hoverData'),
+)
+def HoverTournament(tournaments):
+    if(tournaments == None):
+        return "Name : ", "Adresse : ", "Date : ", "Id : "
+    tournamentID = tournaments['points'][0]['customdata'][1]
+    tournament = None
+    for element in TournamentsBuffer:
+        if tournamentID == element['id']:
+            tournament = element
+    return "Name : " + tournament['name'], "Adresse : " + tournament['venueAddress'], "Date : " + str(tournament['Date']), "Id : " + str(tournamentID)

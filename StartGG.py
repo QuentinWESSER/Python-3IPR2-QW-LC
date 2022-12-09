@@ -41,7 +41,7 @@ def LoadKey():
   return [key]
 
 def main():
-  data = API.fectTournamentList('ee0b0c0a38fdcc316fc86d35b0187a4e',[1386], '48.86', '2.34445', 20, 1667257200, 1669762800, True)
+  data = API.returnTournament('ee0b0c0a38fdcc316fc86d35b0187a4e',501848)
   print(data)
 
 if __name__ == '__main__':

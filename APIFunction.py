@@ -145,9 +145,10 @@ def returnVideoGames(input, distMax):
 def returnTournament(key, Id):
     var = QTEMP.TOURNAMENT_QUERRY_VAR
     var['TournamentID'] = Id
-    Tournament_dict = sendRequest(key, QTEMP.TOURNAMENT_QUERRY, var)
-    if Tournament_dict == None:
+    Tournament = sendRequest(key, QTEMP.TOURNAMENT_QUERRY, var)
+    if Tournament == None:
         return 'Unable to retrieve info'
+    return Tournament['data']['tournaments']['nodes'][0]
 
 
 
