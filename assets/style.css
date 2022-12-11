@@ -1,21 +1,49 @@
 body {
     font-family: 'Roboto', sans-serif;
-    color: #0d0d0d;
+    background-color: #ffffff;
+    color: #EDEDED;
+}
+.topbar{
+    height : 15%;
+    width: 700px;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    right: 20px;
+    background-color: #1365c4;
+    padding: 16px 20px 16px 36px;
+    text-align : center;
 }
 
 .sidebar{
-    height: 95%; /* Full-height: remove this if you want "auto" height */
+    height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 700px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
-    top: 1%; /* Stay at the top */
-    left: 20px;
+    top: 15%; /* Stay at the top */
+    left: 0%;
     right: 20px;
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-    background-color: #fef9f8;
-    border-radius: 50px;
-    padding: 16px 20px 16px 36px;
+    background-color: #171717;
+    padding: 16px 20px 16px 36px;   
+}
+
+.block1{
+    background-color: #1365c4;
+    padding: 10px;
+    border-radius : 5px;
+}
+
+.block2{
+    background-color: #1365c4;
+    padding: 10px;
+    border-radius : 5px;
+}
+
+.block3{
+    background-color: #1365c4;
+    padding: 10px;
+    border-radius : 5px;
 }
 
 .rightbar{
@@ -33,16 +61,31 @@ body {
     width: 50%;
 }
 
+.searchbar-left input{
+    border: 0;
+    border : 2px solid #000000;
+}
+
 .searchbar-right{
     width: 50%;
-    border : 1px solid red;
+    border : 1px solid #000000;
+    border-radius : 5px
 }
 
 .Input{
     height: 30px;
     width: 90%;
     border-radius: 10px;
-    border: 1px solid grey;
+    border : 2px solid #000000;
+}
+
+.Select{
+    border-radius: 5px;
+    border : 1px solid #000000;
+}
+
+.Picker{
+    border-color : #000000;
 }
 
 .Range{

@@ -84,15 +84,15 @@ def fetchVideoGame(key, num): #return a dict with VideoGames
 
 def fectTournamentList(key, Ids, Latitude, Longitude, Range, StartDate, EndDate, Day=True):
     result = []
-    for id in Ids:
-        response = fetchTournamentsWithOneGame(key, id, Latitude, Longitude, Range, StartDate, EndDate, Day)
+    for index in Ids:
+        response = fetchTournamentsWithOneGame(key, index, Latitude, Longitude, Range, StartDate, EndDate, Day)
         if isinstance(response, str):
             return "Unable to retrieve tournaments"
         result += response
     return result
 
 def fetchTournamentsWithOneGame(key, Id, Latitude, Longitude, Range, StartDate, EndDate, Day=True):
-    var = QTEMP.VIDEOGAME_QUERRY_VAR
+    var = QTEMP.TOURNAMENTS_QUERRY_VAR
     var['IdRange'] = [Id]
     var['Loca'] = str(Latitude) + "," + str(Longitude)
     var['Range'] = str(Range) + "km"
@@ -147,6 +147,16 @@ def returnVideoGames(input, distMax):
         for game in result:
             Games.append([game[0]['id'], game[0]['name'], game[0]['images']])
     return Games
+
+def returnTournament(key, Id):
+    var = QTEMP.TOURNAMENT_QUERRY_VAR
+    var['TournamentID'] = Id
+    Tournament = sendRequest(key, QTEMP.TOURNAMENT_QUERRY, var)
+    if Tournament == None:
+        return 'Unable to retrieve info'
+    return Tournament['data']['tournaments']['nodes'][0]
+
+
 
 def FindClosetList(dict, input, nElements, key, distMax):
     result = [[None, 0]] * nElements
