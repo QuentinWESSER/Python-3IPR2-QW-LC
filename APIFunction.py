@@ -122,6 +122,12 @@ def fetchTournamentsWithOneGame(key, Id, Latitude, Longitude, Range, StartDate, 
         for element in Tournaments_dict:
             element['Date'] = pd.to_datetime(int(element['endAt']) // 604800 * 604800, unit='s')
     
+    for element in Tournaments_dict:
+        if len(element['images']) == 0:
+            element['images'] = "None"
+        else:
+            element['images'] = element['images'][0]['url']
+
     for Tournaments in Tournaments_dict:
         Tournaments['GameID'] = Id
     return Tournaments_dict

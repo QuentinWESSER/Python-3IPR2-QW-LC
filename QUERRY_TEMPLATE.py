@@ -42,6 +42,9 @@ query GetVideoGame($IdRange: [ID], $Loca: String, $Range: String, $Start: Timest
       name,
       endAt,
       venueAddress,
+      images{
+        url
+      }
     },
     pageInfo {
       totalPages
