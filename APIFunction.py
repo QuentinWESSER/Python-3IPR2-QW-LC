@@ -20,7 +20,7 @@ def sendRequest(key, QUERRY, VAR, second=1):
     #From https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
     if(req.status_code == 429):
-        if(second < 20):
+        if(second < 10):
             time.sleep(second)
             return sendRequest(key, QUERRY, VAR, second*2)
         else:
@@ -154,8 +154,36 @@ def returnTournament(key, Id):
     Tournament = sendRequest(key, QTEMP.TOURNAMENT_QUERRY, var)
     if Tournament == None:
         return 'Unable to retrieve info'
-    return Tournament['data']['tournaments']['nodes'][0]
+    Tournament = Tournament['data']['tournaments']['nodes'][0]
+    PlayerWRP = []
+    for player in Tournament['participants']['nodes']:
+        playerP = player['entrants'][0]['seeds'][0]
+        playerWR = returnPlayerWR(key, player['player']['id'])
+        if playerWR != 'NetworkError':
+            PlayerWRP.append({'WR' : playerWR, 'P' : playerP['placement']})
+    del Tournament['participants']
+    Tournament['data'] = PlayerWRP
+    return Tournament
 
+def returnPlayerWR(key, id):
+    var = QTEMP.SETS_QUERRY_VAR
+    var['PlayerID'] = id
+    response = sendRequest(key, QTEMP.SETS_QUERRY, var)
+    try:
+        Game = 0
+        Win = 0
+        for element in response['data']['player']['sets']['nodes']:
+            winnerId = element['winnerId']
+            for player in element['slots']:
+                if player['entrant']['id'] == winnerId:
+                    Game += 1
+                    if player['entrant']['participants'][0]['player']['id'] == id:
+                        Win += 1
+        return Win/Game
+    except:
+        return "An error as occured"
+    
+    
 
 
 def FindClosetList(dict, input, nElements, key, distMax):

@@ -32,7 +32,7 @@ layout = html.Div(children=[
                 ]),
                 html.Div(className="AdresseInfo", children=[
                     html.H1("ADRESSE : "),
-                    html.H3("Ratio", id="adress")
+                    html.H3("Ratio", id="adressTournament")
                 ]),
                 html.Div(className="AttendeesInfo", children=[
                     html.H1("NOMBRE DE JOUEUR ATTENDU : "),
@@ -55,16 +55,29 @@ layout = html.Div(children=[
 
 @callback(
     Output('gamename', 'children'),
+    Output('adressTournament', 'children'),
+    Output('attendees', 'children'),
+    Output('startAt', 'children'),
+    Output('endAt', 'children'),
+    Output('url', 'children'),
+    Output('histogramme', 'figure'),
     Input('enter-ID', 'value'),
     State("key-data", "data")
 )
 
 def LoadTournament(id, key):
     if(id is None or key is None):
-        return ''
+        return 'Unable to retrieve data', 'Unable to retrieve data', 'Unable to retrieve data' , 'Unable to retrieve data', 'Unable to retrieve data', 'Unable to retrieve data', px.line({})
     
     data = API.returnTournament(key[0], id)
     if isinstance(data, str):
-        return 'Unable to retrieve data'
+        return 'Unable to retrieve data', 'Unable to retrieve data', 'Unable to retrieve data' , 'Unable to retrieve data', 'Unable to retrieve data', 'Unable to retrieve data', px.line({})
     
-    return data['name']
+    linedata = data['data']
+    df = pd.DataFrame(linedata, columns=['WR','P'])
+    df = df.sort_values(by="WR")
+    fig = px.line(df, x='WR', y='P')
+    fig.update_layout(
+        yaxis = dict(autorange="reversed")
+    )
+    return data['name'], data['city'] + " " + data['venueAddress'], data['numAttendees'], data['startAt'], data['endAt'], data['url'], fig 
