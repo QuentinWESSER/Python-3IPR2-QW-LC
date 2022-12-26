@@ -42,6 +42,9 @@ query GetTournaments($IdRange: [ID], $Loca: String, $Range: String, $Start: Time
       name,
       endAt,
       venueAddress,
+      images{
+        url
+      }
     },
     pageInfo {
       totalPages
@@ -76,7 +79,20 @@ query GetTournament($TournamentID: ID) {
       startAt,
       endAt,
       numAttendees,
-      url(relative:false)
+      url(relative:false),
+      participants(query: {
+        page:1,
+        perPage:500
+      }) {
+        nodes{
+          entrants {
+            seeds { placement }
+          },
+          player{
+            id
+          }
+        }
+      }
     }
   }
 }
@@ -84,4 +100,28 @@ query GetTournament($TournamentID: ID) {
 
 TOURNAMENT_QUERRY_VAR = {
   "TournamentID": 0
+}
+
+SETS_QUERRY = """
+query GetSets($PlayerID: ID!) {
+  player(id: $PlayerID){
+    sets(page:1, perPage:50){
+      nodes{ 
+        winnerId,
+        slots{
+          entrant {
+            id,
+            participants{
+              player { id }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+"""
+
+SETS_QUERRY_VAR = {
+  "PlayerID": 0
 }
