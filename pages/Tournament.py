@@ -17,37 +17,40 @@ layout = html.Div(children=[
     ]),
 
     html.Div(className="principalBar", children=[
-        html.Div(className="rightBar", children=[
-            dcc.Loading(children=[
-                html.H1("Missing information", id='status'),
-                dcc.Graph(id='histogramme'),
-            ])
-        ]),
 
         html.Div(className="leftbar", children=[
             dcc.Loading(children=[
                 html.Div(className="NameGameInfo", children=[
-                    html.H1("GAME : "),
-                    html.H3("Ratio", id="gamename")
+                    html.Div(className="row1", children=[html.H2("GAME : ")]),
+                    html.Div(className="row2", children=[html.H3("Ratio", id="gamename")]),
                 ]),
                 html.Div(className="AdresseInfo", children=[
-                    html.H1("ADRESSE : "),
-                    html.H3("Ratio", id="adress")
+                    html.Div(className="row3", children=[html.H2("ADRESSE : ")]),
+                    html.Div(className="row4", children=[html.H3("Ratio", id="adress")]),
                 ]),
                 html.Div(className="AttendeesInfo", children=[
-                    html.H1("NOMBRE DE JOUEUR ATTENDU : "),
-                    html.H3("Ratio", id="attendees")
+                    html.Div(className="row5", children=[html.H2("NOMBRE DE JOUEUR ATTENDU : ")]),
+                    html.Div(className="row6", children=[html.H3("Ratio", id="attendees")]),
                 ]),
-                html.Div(className="Start&EndInfo", children=[
-                    html.H1("START : "),
-                    html.H3("Ratio", id="startAt"),
-                    html.H2("START : "),
-                    html.H3("Ratio", id="endAt")
+                html.Div(className="StartInfo", children=[
+                    html.Div(className="row7", children=[html.H2("START : ")]),
+                    html.Div(className="row8", children=[html.H3("Ratio", id="startAt")]),
+                ]),
+                html.Div(className="EndInfo", children=[
+                    html.Div(className="row9", children=[html.H2("END : ")]),
+                    html.Div(className="row10", children=[html.H3("Ratio", id="endAt")]),
                 ]),
                 html.Div(className="urlInfo", children=[
-                    html.H1("URL : "),
-                    html.H3("Ratio", id='url')
-                ]),
+                    html.Div(className="row11", children=[html.H2("URL : ")]),
+                    html.Div(className="row12", children=[html.H3("Ratio", id='url')]),
+                ]),     
+            ])
+        ]),
+
+        html.Div(className="rightBar", children=[
+            dcc.Loading(children=[
+                html.H1("Missing information", id='status'),
+                dcc.Graph(id='histogramme'),
             ])
         ]),
     ])

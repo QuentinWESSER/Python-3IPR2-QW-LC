@@ -107,3 +107,148 @@ input
 h3{
     padding: 0px 20px;
 }
+
+.IDbar{
+    color :#000000;
+}
+
+/*-----------------------------------------------------------------------------------------
+                            Tournament
+-----------------------------------------------------------------------------------------*/
+
+.principalBar{
+    color :#000000;
+    width: 100%;
+    margin: 0 auto;
+}
+/*-----------------------------Name--------------------------------*/
+.NameGameInfo{
+	position: relative;
+    height: 60px;
+}
+
+.row2{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1450px;
+	bottom: 5px;
+}
+
+.row1{
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	right: 1450px;
+	bottom: 5px;
+}
+
+/*-----------------------------Adresse--------------------------------*/
+.AdresseInfo{
+    position: relative;
+    height: 60px;
+}
+
+.row4{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1400px;
+	bottom: 5px;
+}
+
+.row3{
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	right: 1400px;
+	bottom: 5px;
+}
+
+/*-----------------------------Attendees--------------------------------*/
+.AttendeesInfo{
+    position: relative;
+    height: 60px;
+}
+
+.row6{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1150px;
+	bottom: 5px;
+}
+
+.row5{
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	right: 1150px;
+	bottom: 5px;
+}
+
+/*-----------------------------Start--------------------------------*/
+.StartInfo{
+    position: relative;
+    height: 60px;
+}
+
+.row8{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1450px;
+	bottom: 5px;
+}
+
+.row7{
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	right: 1450px;
+	bottom: 5px;
+}
+
+/*-----------------------------End--------------------------------*/
+.EndInfo{
+    position: relative;
+    height: 60px;
+}
+
+.row10{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1450px;
+	bottom: 5px;
+}
+
+.row9{
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	right: 1450px;
+	bottom: 5px;
+}
+
+/*-----------------------------End--------------------------------*/
+.urlInfo{
+    position: relative;
+    height: 60px;
+}
+
+.row12{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1450px;
+	bottom: 5px;
+}
+
+.row11{
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	right: 1450px;
+	bottom: 5px;
+}
