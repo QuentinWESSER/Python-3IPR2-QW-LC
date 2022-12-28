@@ -15,7 +15,7 @@ TournamentsBuffer = []
 layout = html.Div(children=[
     dcc.Store("key-data"),
     html.Div(className="topbar", children=[
-        html.H1("Tournaments"),
+        html.H1("Get Tournaments"),
     ]),
     html.Div(className="sidebar", children=[
         html.Div(className="block1", children=[
@@ -73,14 +73,15 @@ layout = html.Div(children=[
   Input("enter-city", "value"),
 )
 def LoadCity(city_name):
-    if(city_name != None or city_name == ""):
-        global CitiesBuffer
-        CitiesBuffer = API.returnCityNames(city_name, 10)
-        CityName = []
-        for City in CitiesBuffer:
-            CityName.append(str(City[0]) + ', ' + str(City[1]))
-        return CityName
-    return ['No Result']
+    if(city_name == None or city_name == ""):
+        return ['No Result']
+    
+    global CitiesBuffer
+    CitiesBuffer = API.returnCityNames(city_name, 10)
+    CityName = []
+    for City in CitiesBuffer:
+        CityName.append(str(City[0]) + ', ' + str(City[1]))
+    return CityName
 
 @callback(
   Output("games", "options"),
@@ -161,10 +162,11 @@ def LoadGraph(start_date, end_date, games, city, range, selected, key):
     
     if selected == 'Line Graph':
         #Line Chart
+        print(data)
         df = pd.DataFrame(data, columns=['id', 'name', 'Date', 'Game'])
         Title = 'Number of tournaments per day'
         if endAt - startAt < 5_000_000:
-            Title = 'Number of tournaments per week'
+            Title = 'Number of tournaments per week'        
         return 'Tournaments', px.bar(df, x='Date', hover_data=['name', 'id'], color='Game', title=Title)
     else:
         #Map chart
