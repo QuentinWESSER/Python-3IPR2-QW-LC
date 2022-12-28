@@ -8,21 +8,34 @@ import pandas as pd
 
 url = "https://api.start.gg/gql/alpha"
 
-def sendRequest(key, QUERRY, VAR, second=1):
-    header = {"Authorization": "Bearer " + key}
-    query = QUERRY
-    variables = VAR
+def sendRequest(key, QUERRY, VAR, seconds=1):
+    """
+    Permet d'envoyer une requete post avec un payload et de retourner la reponse de la requete
 
-    jsonRequest = {"query":query,"variables":variables}
+    Args :
+        key : Clé permetant d'acceder à l'API
+        QUERRY : Type de requete que nous voulons envoyer
+        VAR : Parametre de la requete
+        seconds = 1 : Temps minimum pour renvoyer une requete si on dépasse le nombre de requete limité dans une periode de temps
+
+    Returns :
+        Retourne la réponse à la requete, ou retourne rien en cas d'erreur
+    """
+
+    #Permet de s'identifier à de l'API
+    header = {"Authorization": "Bearer " + key}
+
+    jsonRequest = {"query":QUERRY,"variables":VAR}
 
     req = requests.post( url = url,json=jsonRequest,headers=header)
 
     #From https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
-    if(req.status_code == 429):
-        if(second < 20):
-            time.sleep(second)
-            return sendRequest(key, QUERRY, VAR, second*2)
+    if(req.status_code == 429): #Trop de requete
+        if(seconds < 20):
+            #On attends et on renvoye une requete
+            time.sleep(seconds)
+            return sendRequest(key, QUERRY, VAR, seconds*2)
         else:
             print("Error Too Many Request" + str(req.status_code))
             return
@@ -35,16 +48,22 @@ def sendRequest(key, QUERRY, VAR, second=1):
         print("Unknow Error" + str(req.status_code))
         return
 
-def ReverseGeoCoding(adress):
+def ReverseGeoCoding(adress : str):
+    """
+    Permet de retourner les coordonées d'une adresse, avec le site https://api-adresse.data.gouv.fr/
+
+    Args :
+        adress : Addresse dont on veut récuperer les coordonnées
+
+    Returns :
+        Retourne la coordonnées, ou retourne rien en cas d'erreur
+    """
     gov_url = "https://api-adresse.data.gouv.fr/search/?q=" + adress.replace(" ", "+")
     req = requests.get(url=gov_url, headers=None, json=None)
-    return req.json()['features'][0]['geometry']['coordinates']
-
-def Replace(element, listreplace):
-    for replaceTerm in listreplace:
-        if(replaceTerm[0] in element):
-            element = element.replace(replaceTerm[0], replaceTerm[1])
-    return element
+    try:
+        return req.json()['features'][0]['geometry']['coordinates']
+    except:
+        return
     
 def SaveVideoGameAsCSV(key, num):
     VideoGamedict = fetchVideoGame(key, num)
