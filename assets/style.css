@@ -1,3 +1,7 @@
+/*-----------------------------------------------------------------------------------------
+                            GetTournament
+-----------------------------------------------------------------------------------------*/
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #ffffff;
@@ -117,7 +121,6 @@ h3{
 /*-----------------------------------------------------------------------------------------
                             Tournament
 -----------------------------------------------------------------------------------------*/
-
 .principalBar{
     color :#000000;
     width: 100%;
@@ -130,10 +133,11 @@ h3{
 }
 
 .row2{
+    background-color: #1365c4;
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1450px;
+	width: 1485px;
 	bottom: 5px;
 }
 
@@ -141,7 +145,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1450px;
+	right: 1485px;
 	bottom: 5px;
 }
 
@@ -155,7 +159,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1400px;
+	width: 1425px;
 	bottom: 5px;
 }
 
@@ -163,7 +167,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1400px;
+	right: 1425px;
 	bottom: 5px;
 }
 
@@ -177,7 +181,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1150px;
+	width: 1170px;
 	bottom: 5px;
 }
 
@@ -185,7 +189,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1150px;
+	right: 1170px;
 	bottom: 5px;
 }
 
@@ -199,7 +203,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1450px;
+	width: 1460px;
 	bottom: 5px;
 }
 
@@ -207,7 +211,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1450px;
+	right: 1460px;
 	bottom: 5px;
 }
 
@@ -221,7 +225,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1450px;
+	width: 1490px;
 	bottom: 5px;
 }
 
@@ -229,11 +233,11 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1450px;
+	right: 1490px;
 	bottom: 5px;
 }
 
-/*-----------------------------End--------------------------------*/
+/*-----------------------------URL--------------------------------*/
 .urlInfo{
     position: relative;
     height: 60px;
@@ -243,7 +247,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1450px;
+	width: 1490px;
 	bottom: 5px;
 }
 
@@ -251,6 +255,13 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1450px;
+	right: 1490px;
 	bottom: 5px;
+}
+
+/*-----------------------------ID Bar--------------------------------*/
+.IDbar{
+    color: #EDEDED;
+    background-color: #1365c4;
+    padding: 10px;
 }

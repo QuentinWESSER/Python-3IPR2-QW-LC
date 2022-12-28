@@ -15,7 +15,7 @@ TournamentsBuffer = []
 layout = html.Div(children=[
     dcc.Store("key-data"),
     html.Div(className="topbar", children=[
-        html.H1("Tournaments"),
+        html.H1("Get Tournaments"),
     ]),
     html.Div(className="sidebar", children=[
         html.Div(className="block1", children=[
