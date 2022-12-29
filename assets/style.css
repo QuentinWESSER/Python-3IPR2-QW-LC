@@ -141,12 +141,13 @@ h3{
 }
 
 .row1{
+    background-color: #1365c4;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 0px;
 	bottom: 5px;
-    width: 10%;
+    width: 5%;
 }
 
 /*-----------------------------Adresse--------------------------------*/
