@@ -32,9 +32,9 @@ def sendRequest(key, QUERRY, VAR, seconds=1):
     #From https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
     if(req.status_code == 429):
-        if(second < 10):
-            time.sleep(second)
-            return sendRequest(key, QUERRY, VAR, second*2)
+        if(seconds < 10):
+            time.sleep(seconds)
+            return sendRequest(key, QUERRY, VAR, seconds*2)
         else:
             print("Error Too Many Request" + str(req.status_code))
             return
