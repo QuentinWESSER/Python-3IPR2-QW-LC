@@ -133,11 +133,10 @@ h3{
 }
 
 .row2{
-    background-color: #1365c4;
-	position: absolute;
+    position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1485px;
+	width: 94%;
 	bottom: 5px;
 }
 
@@ -145,8 +144,9 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1485px;
+	right: 0px;
 	bottom: 5px;
+    width: 10%;
 }
 
 /*-----------------------------Adresse--------------------------------*/
@@ -159,7 +159,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1425px;
+	width: 90%;
 	bottom: 5px;
 }
 
@@ -167,7 +167,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1425px;
+	right: 0px;
 	bottom: 5px;
 }
 
@@ -181,7 +181,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1170px;
+	width: 73%;
 	bottom: 5px;
 }
 
@@ -189,7 +189,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1170px;
+	right: 20%;
 	bottom: 5px;
 }
 
@@ -203,7 +203,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1460px;
+	width: 92%;
 	bottom: 5px;
 }
 
@@ -211,7 +211,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1460px;
+	right: 0px;
 	bottom: 5px;
 }
 
@@ -225,7 +225,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1490px;
+	width: 94%;
 	bottom: 5px;
 }
 
@@ -233,7 +233,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1490px;
+	right: 0px;
 	bottom: 5px;
 }
 
@@ -247,7 +247,7 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1490px;
+	width: 94%;
 	bottom: 5px;
 }
 
@@ -255,7 +255,7 @@ h3{
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1490px;
+	right: 0px;
 	bottom: 5px;
 }
 
