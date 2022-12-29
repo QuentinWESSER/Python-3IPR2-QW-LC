@@ -122,9 +122,10 @@ h3{
                             Tournament
 -----------------------------------------------------------------------------------------*/
 .principalBar{
-    color :#000000;
+    background-color: #000000;
+    color: #EDEDED;
     width: 100%;
-    margin: 0 auto;
+    height: 370px;
 }
 /*-----------------------------Name--------------------------------*/
 .NameGameInfo{
@@ -142,6 +143,7 @@ h3{
 
 .row1{
     background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
@@ -165,11 +167,14 @@ h3{
 }
 
 .row3{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 0px;
 	bottom: 5px;
+    width: 9%;
 }
 
 /*-----------------------------Attendees--------------------------------*/
@@ -187,11 +192,14 @@ h3{
 }
 
 .row5{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 20%;
 	bottom: 5px;
+    width: 26%;
 }
 
 /*-----------------------------Start--------------------------------*/
@@ -209,11 +217,14 @@ h3{
 }
 
 .row7{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 0px;
 	bottom: 5px;
+    width: 7%;
 }
 
 /*-----------------------------End--------------------------------*/
@@ -231,11 +242,14 @@ h3{
 }
 
 .row9{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 0px;
 	bottom: 5px;
+    width: 5%;
 }
 
 /*-----------------------------URL--------------------------------*/
@@ -253,11 +267,14 @@ h3{
 }
 
 .row11{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 0px;
 	bottom: 5px;
+    width: 5%;
 }
 
 /*-----------------------------ID Bar--------------------------------*/
@@ -265,4 +282,8 @@ h3{
     color: #EDEDED;
     background-color: #1365c4;
     padding: 10px;
+}
+
+.title {
+    color: #000000;
 }
