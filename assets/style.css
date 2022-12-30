@@ -287,3 +287,49 @@ h3{
 .title {
     color: #000000;
 }
+
+
+/*-----------------------------------------------------------------------------------------
+                            Home 
+-----------------------------------------------------------------------------------------*/
+
+.Home{
+    color: #EDEDED;
+    background-color: #1365c4;
+    text-align: center;
+}
+
+.link-btn{
+    position: relative;
+    height: 60px;
+}
+
+.btn1{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 50%;
+	bottom: 5px;
+}
+
+.btn2{
+	position: absolute;
+	left: 20%;
+	top: 5px;
+	right: 10px;
+	bottom: 5px;
+    width: 40%;
+}
+
+.btn1 Button{
+    width: 400px;
+    height: 400px;
+    background-color: #1365c4;
+    color: #EDEDED;
+    font-size: 40px;
+}
+
+.btn2 Button{
+    width: 400px;
+    height: 400px;
+}

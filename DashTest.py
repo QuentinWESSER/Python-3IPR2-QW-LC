@@ -9,7 +9,7 @@ app = Dash(__name__, use_pages=True)
 
 app.layout = html.Div([
   dcc.Store(id="key-data"),
-  html.Button("ratio" , id="btn", disabled=True),
+  html.Button("Projet Python" , id="btn", disabled=True),
 	dash.page_container
 ])
 
