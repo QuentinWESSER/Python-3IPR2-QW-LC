@@ -8,7 +8,7 @@ import pandas as pd
 
 url = "https://api.start.gg/gql/alpha"
 
-def sendRequest(key, QUERRY, VAR, seconds=1):
+def sendRequest(key : str, QUERRY : str, VAR : dict, seconds = 1):
     """
     Permet d'envoyer une requete post avec un payload et de retourner la reponse de la requete
 
@@ -65,32 +65,58 @@ def ReverseGeoCoding(adress : str):
     except:
         return
     
-def SaveVideoGameAsCSV(key, num):
+def SaveVideoGameAsCSV(key : str, num : int):
+    """
+    Permet de récupérer les différents jeux vidéos sur le site StartGG et de les enregister dans un csv
+
+    Args :
+        key : Clé permetant d'acceder à l'API
+        num : Nombre de jeux que on veut récupérer
+
+    Returns :
+        Ne retourne rien, ou le message d'erreur
+    """
+
+    #On utilise l'API pour récupérer les Jeux vidéo
     VideoGamedict = fetchVideoGame(key, num)
+
+    #Si il y a eu une erreur on interrompe la fonction
     if VideoGamedict == None:
         return
     if isinstance(VideoGamedict, str):
+        #Si il y a message d'erreur on le renvoie
         return VideoGamedict
 
     betterDict = VideoGamedict.copy()
     
-    #get only one image for each video games
+    #On récupere seulement une image par jeux vidéo
     for i, element in enumerate(VideoGamedict):
         if (len(element['images']) == 0):
             betterDict[i]['images'] = 'None'
         else : 
             betterDict[i]['images'] = element['images'][0]['url']
 
-    #write the content into an csv
+    #On écrit le contenue dans un fichier csv
     field_names = ['id', 'name', 'images']
     with open('Games.csv', 'w', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames = field_names, delimiter=';')
         writer.writeheader()
         writer.writerows(betterDict)
 
-def fetchVideoGame(key, num): #return a dict with VideoGames
+def fetchVideoGame(key : str, num : int):
+    """
+    Permet de récupérer les différents jeux vidéos sur le site StartGG
+
+    Args :
+        key : Clé permetant d'acceder à l'API
+        num : Nombre de jeux que on veut récupérer
+
+    Returns :
+        Retourne la list des jeux vidéo, ou retourne un message d'erreur en cas d'erreur
+    """
     var = QTEMP.VIDEOGAME_QUERRY_VAR
     List = []
+    #On ne peut que récupérer 500 élément par querry donc nous récupérons les éléments 500 par 500
     for i in range(math.ceil(num/500)):
         var['IdRange'] = list(range(i * 500, (i+1) * 500))
         try:
@@ -98,19 +124,55 @@ def fetchVideoGame(key, num): #return a dict with VideoGames
         except:
             return "Unable to retrieve data for the VideoGame"
         
+    #On trie les jeux en fonction de leurs Id
     NewList = sorted(List, key=lambda videogame: videogame['id'])
     return NewList
 
-def fectTournamentList(key, Ids, Latitude, Longitude, Range, StartDate, EndDate, Day=True):
+def fectTournamentList(key : str, Ids : list[int], Latitude : float, Longitude : float, Range : int, StartDate : int, EndDate : int, Day=True):
+    """
+    Permet de récupérer les différents tournois sur une zone, une periode de temps et sur des jeux vidéos données, sur le site StartGG
+
+    Args :
+        key : Clé permetant d'acceder à l'API
+        Ids : Id des jeux
+        Latitude : Du centre de la zone
+        Longitude : Du centre de la zone
+        Range : Rayon de la zone
+        StartDate : Début de la période de temps
+        EndDate : Fin de la période de temps
+        Day : Permet de savoir si on vas regrouper les jeux par jour (True) ou par semaine (False)
+
+    Returns :
+        Retourne la list des différents tournois, ou retourne un message d'erreur en cas d'erreur
+    """
     result = []
     for index in Ids:
-        response = fetchTournamentsWithOneGame(key, index, Latitude, Longitude, Range, StartDate, EndDate, Day)
+        #Récupere les tournois par un jeux a la fois
+        response = fetchTournamentsWithOneGame(key, index, Latitude, Longitude, Range, StartDate, EndDate, Day) 
         if isinstance(response, str):
             return "Unable to retrieve tournaments"
         result += response
     return result
 
-def fetchTournamentsWithOneGame(key, Id, Latitude, Longitude, Range, StartDate, EndDate, Day=True):
+def fetchTournamentsWithOneGame(key : str, Id : int, Latitude : float, Longitude : float, Range : int, StartDate : int, EndDate : int, Day=True):
+    """
+    Permet de récupérer les différents tournois sur une zone, une periode de temps et sur le jeux vidéo donnée, sur le site StartGG
+
+    Args :
+        key : Clé permetant d'acceder à l'API
+        Id : Id du jeux
+        Latitude : Du centre de la zone
+        Longitude : Du centre de la zone
+        Range : Rayon de la zone
+        StartDate : Début de la période de temps
+        EndDate : Fin de la période de temps
+        Day : Permet de savoir si on vas regrouper les jeux par jour (True) ou par semaine (False)
+
+    Returns :
+        Retourne la list des différents tournois, ou retourne un message d'erreur en cas d'erreur
+    """
+
+    #Definie la requete
     var = QTEMP.TOURNAMENTS_QUERRY_VAR
     var['IdRange'] = [Id]
     var['Loca'] = str(Latitude) + "," + str(Longitude)
@@ -127,6 +189,7 @@ def fetchTournamentsWithOneGame(key, Id, Latitude, Longitude, Range, StartDate, 
     except:
         return "Unable to retrieve tournaments"
 
+    #Si il y a plus de 500 element alors il faut lire sur d'autre page et envoyer de nouvelles requetes
     for i in range(1, Page):
         var['Page'] = i+1
         try:
@@ -134,6 +197,7 @@ def fetchTournamentsWithOneGame(key, Id, Latitude, Longitude, Range, StartDate, 
         except:
             return "Unable to retrieve tournaments"
     
+    #Regroupe les tournois par jour ou par semaine
     if Day:
         for element in Tournaments_dict:
             element['Date'] = pd.to_datetime(int(element['endAt']) // 86400 * 86400, unit='s')
@@ -141,11 +205,14 @@ def fetchTournamentsWithOneGame(key, Id, Latitude, Longitude, Range, StartDate, 
         for element in Tournaments_dict:
             element['Date'] = pd.to_datetime(int(element['endAt']) // 604800 * 604800, unit='s')
     
-    for element in Tournaments_dict:
-        if len(element['images']) == 0:
-            element['images'] = "None"
-        else:
-            element['images'] = element['images'][0]['url']
+    #---------------------- Amélioration -----------------------------------
+    #Affiche que une image par tournois
+    #for element in Tournaments_dict:
+    #    if len(element['images']) == 0:
+    #        element['images'] = "None"
+    #    else:
+    #        element['images'] = element['images'][0]['url']
+    #------------------------------------------------------------------------
 
     for Tournaments in Tournaments_dict:
         Tournaments['GameID'] = Id
@@ -174,6 +241,8 @@ def returnTournament(key, Id):
     if Tournament == None:
         return 'Unable to retrieve info'
     Tournament = Tournament['data']['tournaments']['nodes'][0]
+    Tournament['startAt'] = pd.to_datetime(int(Tournament['startAt']) // 86400 * 86400, unit='s')
+    Tournament['endAt'] = pd.to_datetime(int(Tournament['endAt']) // 86400 * 86400, unit='s')
     PlayerWRP = []
     print(Tournament['participants']['nodes'])
     for player in Tournament['participants']['nodes']:
@@ -202,8 +271,6 @@ def returnPlayerWR(key, id):
         return Win/Game
     except:
         return "An error as occured"
-    
-    
 
 
 def FindClosetList(dict, input, nElements, key, distMax):
