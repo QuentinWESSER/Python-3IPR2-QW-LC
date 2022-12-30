@@ -15,7 +15,7 @@ body {
 
 .btn-home{
     z-index: 1;
-    position: absolute;
+    position: fixed;
     top: 1%;
     height: 8%;
     width: 20%;
@@ -367,10 +367,10 @@ h3{
 }
 
 .Home{
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
-    width: 100%;
+    height: 10%;
     color: #EDEDED;
     background-color: #fff;
     text-align: center;
