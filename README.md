@@ -5,7 +5,7 @@ Cela vous permettra d'acceder à la page d'accueil de notre dashboard.
 
 ## Rapport d'analyse
 
-Après les données extraites du site [STARTGG] nous avons remarqué une très forte densité de tournoi vers les grandes villes. De plus nous avons remarqué les différents Winrate des joueurs sur chaque tournoi et avons pu analyser leurs performances et elur avancement.
+Après les données extraites du site [STARTGG] nous avons remarqué une très forte densité de tournoi vers les grandes villes. De plus nous avons remarqué les différents Winrate des joueurs sur chaque tournoi et avons pu analyser leurs performances et leur avancement.
 
 ## Developper Guide
 
