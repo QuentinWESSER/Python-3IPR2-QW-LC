@@ -10,12 +10,11 @@ layout = html.Div(className="HomePage", children=[
         html.H1("Home Page"),
     ]),
     html.Div(className="pageInfo", children=[
-        html.H3("Bienvenue sur notre site !"),
-        html.H3("Celui-ci est séparé en 2 parties : "),
-        html.H3("Avec le bouton <ID Tournament> vous pourrez accéder au données d'un tournoi via son ID"),
-        html.H3("Avec le bouton <Get Tournaments> vous pourrez trouver le tournoi que vous voulez"),
-        html.H3("dans la liste des tournois du site STARTGG."),
-        html.H3("Le troisième bouton tout en bas vous permet d'update la liste des jeux."),
+        html.H3("Welcome to our website !"),
+        html.H3("This one is separated into 2 parts : "),
+        html.H3("With the <Get Tournaments> button, you will find the tournament you want in the list of tournament on the STARTGG website."),
+        html.H3("With the <ID Tournament> button, you will access tournament's data with its ID."),
+        html.H3("The third button let you reload the list of games."),
     ]),
     html.Div(className="link-btn", children=[
         html.Div(className="page-btn", children=[
@@ -29,6 +28,6 @@ layout = html.Div(className="HomePage", children=[
     ]),
     html.Div(className="bottom-bar", children=[
         html.Div(className="load-btn", children=[html.A(html.Button("reload data"))]),
-        html.H2("Cela peut prendre du temps")
+        html.H2("This could take some time.")
     ])
 ])

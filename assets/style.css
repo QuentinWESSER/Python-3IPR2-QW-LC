@@ -10,11 +10,11 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100%;
-    color: #EDEDED;
+    color: #000000;
 }
 
 .btn-home{
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     top: 1%;
     height: 8%;
@@ -49,6 +49,7 @@ body {
 -----------------------------------------------------------------------------------------*/
 
 .topbar{
+    z-index: 1;
     color: #000000;
     background-color: #fff;
     position: fixed;
@@ -73,27 +74,30 @@ body {
 }
 
 .block1{
-    background-color: #252e37;
+    background-color: #EDEDED;
     padding: 10px;
     border-radius : 5px;
 }
 
 .block2{
-    background-color: #252e37;
+    background-color: #EDEDED;
     padding: 10px;
     border-radius : 5px;
 }
 
 .block3{
-    background-color: #252e37;
+    background-color: #EDEDED;
     padding: 10px;
     border-radius : 5px;
 }
 
 .rightbar{
+    background-color: #EDEDED;
+    color: #000000;
+    padding-left: 50px;
+    padding-bottom: 50px;
     margin-left: 800px;
-    color: #fff;
-    padding-top: 10%;
+    padding-top: 7%;
     padding-right: 5%;
 }
 
@@ -172,7 +176,8 @@ h3{
 
 /*-----------------------------ID Bar--------------------------------*/
 .IDbar{
-    position: absolute;
+    z-index: 1;
+    position: fixed;
     height: 10%;
     width: 100%;
     top: 0%;
@@ -185,6 +190,8 @@ h3{
 /*-----------------------------middle-bar--------------------------------*/
 .middlebar{
     top: 10%;
+    background-color: #EDEDED;
+    color: #000000;
 }
 
 /*-----------------------------end-bar--------------------------------*/
@@ -196,6 +203,7 @@ h3{
 /*-----------------------------Histogramme title--------------------------------*/
 .title {
     color: #000000;
+    text-align: center;
 }
 
 /*-----------------------------Name--------------------------------*/
@@ -208,19 +216,18 @@ h3{
     position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 94%;
+	width: 93%;
 	bottom: 5px;
 }
 
 .row1{
-    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 0px;
 	bottom: 5px;
-    width: 5%;
+    width: 6%;
 }
 
 /*-----------------------------Adresse--------------------------------*/
@@ -233,19 +240,18 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 90%;
+	width: 92%;
 	bottom: 5px;
 }
 
 .row3{
-    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 0px;
 	bottom: 5px;
-    width: 9%;
+    width: 7%;
 }
 
 /*-----------------------------Attendees--------------------------------*/
@@ -258,19 +264,18 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 73%;
+	width: 82%;
 	bottom: 5px;
 }
 
 .row5{
-    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 20%;
 	bottom: 5px;
-    width: 26%;
+    width: 17%;
 }
 
 /*-----------------------------Start--------------------------------*/
@@ -283,19 +288,18 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 92%;
+	width: 94%;
 	bottom: 5px;
 }
 
 .row7{
-    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
 	right: 0px;
 	bottom: 5px;
-    width: 7%;
+    width: 5%;
 }
 
 /*-----------------------------End--------------------------------*/
@@ -313,7 +317,6 @@ h3{
 }
 
 .row9{
-    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
@@ -338,7 +341,6 @@ h3{
 }
 
 .row11{
-    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
@@ -460,6 +462,7 @@ h3{
     height: 70px;
     top: 90%;
     border-radius: 20px;
+    color: #fff;
 }
 
 .bottom-bar H2{

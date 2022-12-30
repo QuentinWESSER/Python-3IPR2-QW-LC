@@ -21,23 +21,23 @@ layout = html.Div(children=[
         html.Div(className="middlebar", children=[
             dcc.Loading(children=[
                 html.Div(className="NameGameInfo", children=[
-                    html.Div(className="row1", children=[html.H2("NOM : ")]),
+                    html.Div(className="row1", children=[html.H2("Name : ")]),
                     html.Div(className="row2", children=[html.H2("Ratio", id="gamename")]),
                 ]),
                 html.Div(className="AdresseInfo", children=[
-                    html.Div(className="row3", children=[html.H2("ADRESSE : ")]),
+                    html.Div(className="row3", children=[html.H2("Adress : ")]),
                     html.Div(className="row4", children=[html.H2("Ratio", id="adressTournament")]),
                 ]),
                 html.Div(className="AttendeesInfo", children=[
-                    html.Div(className="row5", children=[html.H2("NOMBRE DE JOUEUR ATTENDU : ")]),
+                    html.Div(className="row5", children=[html.H2("Number of attendees : ")]),
                     html.Div(className="row6", children=[html.H2("Ratio", id="attendees")]),
                 ]),
                 html.Div(className="StartInfo", children=[
-                    html.Div(className="row7", children=[html.H2("START : ")]),
+                    html.Div(className="row7", children=[html.H2("Start : ")]),
                     html.Div(className="row8", children=[html.H2("Ratio", id="startAt")]),
                 ]),
                 html.Div(className="EndInfo", children=[
-                    html.Div(className="row9", children=[html.H2("END : ")]),
+                    html.Div(className="row9", children=[html.H2("End : ")]),
                     html.Div(className="row10", children=[html.H2("Ratio", id="endAt")]),
                 ]),
                 html.Div(className="urlInfo", children=[
@@ -49,7 +49,7 @@ layout = html.Div(children=[
 
         html.Div(className="endbar", children=[
             dcc.Loading(children=[
-                html.Div(className="title", children=[html.H1("Histogramme du placement en fonction du Winrate les 50 dernières parties :", id='status')]),
+                html.Div(className="title", children=[html.H1("Histogram of placement as fuction of the Winrate of the last 50 games :", id='status')]),
                 dcc.Graph(id='histogramme'),
             ])
         ]),
@@ -69,6 +69,16 @@ layout = html.Div(children=[
 )
 
 def LoadTournament(id, key):
+    """
+    Permet de retourner une liste d'informations sur un tournoi en fonction de son ID
+
+    Args :
+        ID : ID d'un tournoi
+        key : Clé permetant d'acceder à l'API
+
+    Returns :
+        Retourne une liste d'informations sur ce tournoi
+    """
     if(id is None or key is None):
         return 'Unable to retrieve data', 'Unable to retrieve data', 'Unable to retrieve data' , 'Unable to retrieve data', 'Unable to retrieve data', 'Unable to retrieve data', px.line({})
     
