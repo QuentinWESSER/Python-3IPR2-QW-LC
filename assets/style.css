@@ -122,9 +122,10 @@ h3{
                             Tournament
 -----------------------------------------------------------------------------------------*/
 .principalBar{
-    color :#000000;
+    background-color: #000000;
+    color: #EDEDED;
     width: 100%;
-    margin: 0 auto;
+    height: 370px;
 }
 /*-----------------------------Name--------------------------------*/
 .NameGameInfo{
@@ -133,20 +134,22 @@ h3{
 }
 
 .row2{
-    background-color: #1365c4;
-	position: absolute;
+    position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1485px;
+	width: 94%;
 	bottom: 5px;
 }
 
 .row1{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1485px;
+	right: 0px;
 	bottom: 5px;
+    width: 5%;
 }
 
 /*-----------------------------Adresse--------------------------------*/
@@ -159,16 +162,19 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1425px;
+	width: 90%;
 	bottom: 5px;
 }
 
 .row3{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1425px;
+	right: 0px;
 	bottom: 5px;
+    width: 9%;
 }
 
 /*-----------------------------Attendees--------------------------------*/
@@ -181,16 +187,19 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1170px;
+	width: 73%;
 	bottom: 5px;
 }
 
 .row5{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1170px;
+	right: 20%;
 	bottom: 5px;
+    width: 26%;
 }
 
 /*-----------------------------Start--------------------------------*/
@@ -203,16 +212,19 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1460px;
+	width: 92%;
 	bottom: 5px;
 }
 
 .row7{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1460px;
+	right: 0px;
 	bottom: 5px;
+    width: 7%;
 }
 
 /*-----------------------------End--------------------------------*/
@@ -225,16 +237,19 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1490px;
+	width: 94%;
 	bottom: 5px;
 }
 
 .row9{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1490px;
+	right: 0px;
 	bottom: 5px;
+    width: 5%;
 }
 
 /*-----------------------------URL--------------------------------*/
@@ -247,16 +262,19 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 1490px;
+	width: 94%;
 	bottom: 5px;
 }
 
 .row11{
+    background-color: #1365c4;
+    border-radius: 5px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
-	right: 1490px;
+	right: 0px;
 	bottom: 5px;
+    width: 5%;
 }
 
 /*-----------------------------ID Bar--------------------------------*/
@@ -264,4 +282,54 @@ h3{
     color: #EDEDED;
     background-color: #1365c4;
     padding: 10px;
+}
+
+.title {
+    color: #000000;
+}
+
+
+/*-----------------------------------------------------------------------------------------
+                            Home 
+-----------------------------------------------------------------------------------------*/
+
+.Home{
+    color: #EDEDED;
+    background-color: #1365c4;
+    text-align: center;
+}
+
+.link-btn{
+    position: relative;
+    height: 60px;
+}
+
+.btn1{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 50%;
+	bottom: 5px;
+}
+
+.btn2{
+	position: absolute;
+	left: 20%;
+	top: 5px;
+	right: 10px;
+	bottom: 5px;
+    width: 40%;
+}
+
+.btn1 Button{
+    width: 400px;
+    height: 400px;
+    background-color: #1365c4;
+    color: #EDEDED;
+    font-size: 40px;
+}
+
+.btn2 Button{
+    width: 400px;
+    height: 400px;
 }

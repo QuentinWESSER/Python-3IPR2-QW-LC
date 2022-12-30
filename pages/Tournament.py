@@ -49,7 +49,7 @@ layout = html.Div(children=[
 
         html.Div(className="rightBar", children=[
             dcc.Loading(children=[
-                html.H1("Missing information", id='status'),
+                html.Div(className="title", children=[html.H1("Histogramme du placement en fonction du Winrate les 50 dernières parties :", id='status')]),
                 dcc.Graph(id='histogramme'),
             ])
         ]),
