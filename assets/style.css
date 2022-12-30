@@ -32,6 +32,7 @@ body {
 .btn-home a button{
     border: 0;
     color: #fff;
+    font-size: 30px;
     background-color: #252e37;
     border-radius: 0 0 24px 0;
     width: 100%;
