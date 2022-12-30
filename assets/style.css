@@ -3,20 +3,26 @@
 -----------------------------------------------------------------------------------------*/
 
 body {
+    height: 100%;
+    width: 100%;
     font-family: 'Roboto', sans-serif;
-    background-color: #ffffff;
+    background-color: #000000;
     color: #EDEDED;
 }
 .topbar{
     height : 15%;
     width: 700px;
     position: fixed;
-    top: 0%;
+    top: 5%;
     left: 0%;
     right: 20px;
     background-color: #1365c4;
     padding: 16px 20px 16px 36px;
     text-align : center;
+}
+
+Button{
+    position: fixed;
 }
 
 .sidebar{
@@ -292,8 +298,15 @@ h3{
 /*-----------------------------------------------------------------------------------------
                             Home 
 -----------------------------------------------------------------------------------------*/
-
+.HomePage{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 650px;
+    background-color: #000000;
+}
 .Home{
+    width: 100%;
     color: #EDEDED;
     background-color: #1365c4;
     text-align: center;
@@ -308,13 +321,13 @@ h3{
 	position: absolute;
 	right: 5px;
 	top: 5px;
-	width: 50%;
+	width: 30%;
 	bottom: 5px;
 }
 
 .btn2{
 	position: absolute;
-	left: 20%;
+	left: 40%;
 	top: 5px;
 	right: 10px;
 	bottom: 5px;
@@ -322,14 +335,36 @@ h3{
 }
 
 .btn1 Button{
-    width: 400px;
-    height: 400px;
-    background-color: #1365c4;
-    color: #EDEDED;
+    width: 350px;
+    height: 500px;
     font-size: 40px;
 }
 
 .btn2 Button{
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 500px;
+    font-size: 40px;
+}
+
+.btn3 {
+    position: absolute;
+    top: 93%;
+    left: 45%;
+}
+
+.bottom-bar{
+    position: absolute;
+    background-color: #1365c4;
+    width: 100%;
+    height: 70px;
+    top: 90%;
+    left: 0%;
+}
+
+.presentation{
+    color: #EDEDED;
+    background-color: #1365c4;
+    height: 500px;
+    position: absolute;
+    width: 500px;
 }
