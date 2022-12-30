@@ -3,13 +3,13 @@ from dash import html, dcc
 
 dash.register_page(__name__)
 
-layout = html.Div(className="HomePage",children=[
+layout = html.Div(className="HomePage", children=[
     dcc.Store("key-data"),
     
     html.Div(className="Home", children=[
-        html.H1("Home"),
+        html.H1("Home Page"),
     ]),
-    html.Div(className="presentation", children=[
+    html.Div(className="pageInfo", children=[
         html.H3("Bienvenue sur notre site !"),
         html.H3("Celui-ci est séparé en 2 parties : "),
         html.H3("Avec le bouton <ID Tournament> vous pourrez accéder au données d'un tournoi via son ID"),
@@ -27,6 +27,8 @@ layout = html.Div(className="HomePage",children=[
             html.Div(className="btn", children=[html.A(html.Button("ID Tournament"), href="tournament")])
             ]),
     ]),
-    html.Div(className="bottom-bar", children=[]),
-    html.Div(className="btn3", children=[html.A(html.Button("reload data"))]),
+    html.Div(className="bottom-bar", children=[
+        html.Div(className="load-btn", children=[html.A(html.Button("reload data"))]),
+        html.H2("Cela peut prendre du temps")
+    ])
 ])
