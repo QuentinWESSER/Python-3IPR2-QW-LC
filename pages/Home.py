@@ -13,5 +13,6 @@ layout = html.Div(children=[
         html.Div(className="btn1", children=[html.A(html.Button("Get Tournaments"), href="gettournaments")]),
         html.Div(className="btn2", children=[html.A(html.Button("ID Tournament"), href="tournament")]),
     ]),
+    html.Div(className="bottom-bar", children=[]),
     html.Div(className="btn3", children=[html.A(html.Button("reload data"), href="/")]),
 ])
