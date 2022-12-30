@@ -31,8 +31,9 @@ def sendRequest(key, QUERRY, VAR, seconds=1):
 
     #From https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
-    if(req.status_code == 429):
-        if(seconds < 10):
+    if(req.status_code == 429): #Trop de requete
+        if(seconds < 20):
+            #On attends et on renvoye une requete
             time.sleep(seconds)
             return sendRequest(key, QUERRY, VAR, seconds*2)
         else:
@@ -174,6 +175,7 @@ def returnTournament(key, Id):
         return 'Unable to retrieve info'
     Tournament = Tournament['data']['tournaments']['nodes'][0]
     PlayerWRP = []
+    print(Tournament['participants']['nodes'])
     for player in Tournament['participants']['nodes']:
         playerP = player['entrants'][0]['seeds'][0]
         playerWR = returnPlayerWR(key, player['player']['id'])
