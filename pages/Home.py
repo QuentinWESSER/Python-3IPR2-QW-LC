@@ -20,11 +20,11 @@ layout = html.Div(className="HomePage",children=[
     html.Div(className="link-btn", children=[
         html.Div(className="page-btn", children=[
                 html.Img(className="img", src='assets/img/Loupe.png'),
-                html.A(html.Button("Get Tournaments"), href="gettournaments")
+                html.Div(className="btn", children=[html.A(html.Button("Get Tournaments"), href="gettournaments")])
             ]),
         html.Div(className="page-btn", children=[
-            html.Img(className="img", src='assets/img/Loupe.png'),
-            html.A(html.Button("ID Tournament"), href="tournament")
+            html.Img(className="img", src='assets/img/Information.png'),
+            html.Div(className="btn", children=[html.A(html.Button("ID Tournament"), href="tournament")])
             ]),
     ]),
     html.Div(className="bottom-bar", children=[]),

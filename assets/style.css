@@ -315,17 +315,20 @@ h3{
 .link-btn{
     position: absolute;
     top : 10%;
-    height: 70%;
+    height: 60%;
     right : 5%;
     width: 60%;
     display: block;
 }
 
 .page-btn{
+    background: #fff;
+    border-radius: 50px;
     display: inline-block;
     height: 100%;
     width: 40%;
-    padding: 4%;
+    padding: 2%;
+    margin: 3%;
 }
 
 .page-btn img{  
@@ -335,16 +338,34 @@ h3{
     padding: 0 0 10% 0;
 }
 
-.page-btn a{
+.btn{
     display: inline-block;
-    width: 100%;
+    position: absolute;
+    width: 40%;
     height: 10%;
+    bottom: 0;
 }
 
-.page-btn a button{
-    display: inline-block;
+.btn a{
+    position: relative;
+    display: block;
+    width: 80%;
+    left: 10%;
+    height: 100%;
+}
+
+.btn a Button{
+    background-color: #3870e0;
+    border: 0;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 650;
+    font-size: 30px;
+    color: #fff;
+    position: relative;
+    display: block;
     width: 100%;
-    height: 10%;
+    height: 100%;
 }
 
 .btn1{
@@ -398,3 +419,5 @@ h3{
     position: absolute;
     width: 500px;
 }
+
+a:link { text-decoration: none; }
