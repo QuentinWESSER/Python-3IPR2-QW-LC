@@ -5,7 +5,6 @@ dash.register_page(__name__)
 
 layout = html.Div(className="HomePage",children=[
     dcc.Store("key-data"),
-    html.Img(className="img", src='assets/img/home-background.png'),
     
     html.Div(className="Home", children=[
         html.H1("Home"),
