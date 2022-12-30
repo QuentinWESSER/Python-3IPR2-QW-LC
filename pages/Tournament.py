@@ -18,7 +18,7 @@ layout = html.Div(children=[
 
     html.Div(className="principalBar", children=[
 
-        html.Div(className="leftbar", children=[
+        html.Div(className="middlebar", children=[
             dcc.Loading(children=[
                 html.Div(className="NameGameInfo", children=[
                     html.Div(className="row1", children=[html.H2("NOM : ")]),
@@ -47,7 +47,7 @@ layout = html.Div(children=[
             ])
         ]),
 
-        html.Div(className="rightBar", children=[
+        html.Div(className="endbar", children=[
             dcc.Loading(children=[
                 html.Div(className="title", children=[html.H1("Histogramme du placement en fonction du Winrate les 50 dernières parties :", id='status')]),
                 dcc.Graph(id='histogramme'),

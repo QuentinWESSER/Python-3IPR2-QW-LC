@@ -49,14 +49,14 @@ body {
 -----------------------------------------------------------------------------------------*/
 
 .topbar{
-    height : 15%;
-    width: 700px;
+    color: #000000;
+    background-color: #fff;
     position: fixed;
+    height : 10%;
+    width: 100%;
     top: 0%;
     left: 0%;
     right: 20px;
-    background-color: #1365c4;
-    padding: 16px 20px 16px 36px;
     text-align : center;
 }
 
@@ -69,31 +69,32 @@ body {
     left: 0%;
     right: 20px;
     overflow-x: hidden; /* Disable horizontal scroll */
-    background-color: #171717;
     padding: 16px 20px 16px 36px;   
 }
 
 .block1{
-    background-color: #1365c4;
+    background-color: #252e37;
     padding: 10px;
     border-radius : 5px;
 }
 
 .block2{
-    background-color: #1365c4;
+    background-color: #252e37;
     padding: 10px;
     border-radius : 5px;
 }
 
 .block3{
-    background-color: #1365c4;
+    background-color: #252e37;
     padding: 10px;
     border-radius : 5px;
 }
 
 .rightbar{
     margin-left: 800px;
-    color: #000000;
+    color: #fff;
+    padding-top: 10%;
+    padding-right: 5%;
 }
 
 .searchbar{
@@ -163,17 +164,33 @@ h3{
                             Tournament
 -----------------------------------------------------------------------------------------*/
 .principalBar{
-    background-color: #000000;
     color: #EDEDED;
     width: 100%;
     height: 370px;
+    padding-top: 10%;
 }
 
 /*-----------------------------ID Bar--------------------------------*/
 .IDbar{
-    color: #EDEDED;
-    background-color: #1365c4;
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    color: #000000;
+    background-color: #fff;
     text-align: center;
+}
+
+/*-----------------------------middle-bar--------------------------------*/
+.middlebar{
+    top: 10%;
+}
+
+/*-----------------------------end-bar--------------------------------*/
+.endbar{
+    top: 80%;
+    background-color: #fff;
 }
 
 /*-----------------------------Histogramme title--------------------------------*/
@@ -196,7 +213,7 @@ h3{
 }
 
 .row1{
-    background-color: #1365c4;
+    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
@@ -221,7 +238,7 @@ h3{
 }
 
 .row3{
-    background-color: #1365c4;
+    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
@@ -246,7 +263,7 @@ h3{
 }
 
 .row5{
-    background-color: #1365c4;
+    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
@@ -271,7 +288,7 @@ h3{
 }
 
 .row7{
-    background-color: #1365c4;
+    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
@@ -296,7 +313,7 @@ h3{
 }
 
 .row9{
-    background-color: #1365c4;
+    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
@@ -321,7 +338,7 @@ h3{
 }
 
 .row11{
-    background-color: #1365c4;
+    background-color: #252e37;
     border-radius: 5px;
 	position: absolute;
 	left: 5px;
