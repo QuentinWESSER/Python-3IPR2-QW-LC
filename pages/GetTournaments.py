@@ -18,6 +18,13 @@ layout = html.Div(children=[
         html.H1("Get Tournaments"),
     ]),
     html.Div(className="sidebar", children=[
+        html.Div(className="block3", children=[
+            html.H2("Select a period of time"),
+            html.Div(className="Picker", children=[
+                dcc.DatePickerRange(id="date-picker")
+            ]),
+        ]),
+        html.Br(),
         html.Div(className="block1", children=[
             html.H2("Select a location"),
             html.Div(className="searchbar", children=[
@@ -46,13 +53,6 @@ layout = html.Div(children=[
             ]),
             html.Br(),
         ]),
-        html.Br(),
-        html.Div(className="block3", children=[
-            html.H2("Select a period of time"),
-            html.Div(className="Picker", children=[
-                dcc.DatePickerRange(id="date-picker")
-            ]),
-        ]),
     ]),
 
     html.Div(className="rightbar", children=[
@@ -62,7 +62,7 @@ layout = html.Div(children=[
             dcc.Graph(id='graph'),
         ]),
         html.H1("Name : ", id="name"),
-        html.H2("Adresse : ", id="adress"),
+        html.H2("Adress : ", id="adress"),
         html.H3("Date : ", id="date"),
         html.H3("Id : ", id="id")
     ]),
@@ -200,8 +200,17 @@ def LoadGraph(start_date, end_date, games, city, range, selected, key):
     Input('graph', 'hoverData'),
 )
 def HoverTournament(tournaments):
+    """
+    Permet de retourner une liste d'informations sur le tournoi rentré en paramètre
+
+    Args :
+        tournaments : nom du tournoi
+
+    Returns :
+        Retourne une suite d'informations sur le tournoi
+    """
     if(tournaments == None):
-        return "Name : ", "Adresse : ", "Date : ", "Id : "
+        return "Name : ", "Adress : ", "Date : ", "Id : "
     tournamentID = tournaments['points'][0]['customdata'][1]
     tournament = None
     for element in TournamentsBuffer:

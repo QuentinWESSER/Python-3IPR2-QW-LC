@@ -33,7 +33,7 @@ def sendRequest(key : str, QUERRY : str, VAR : dict, seconds = 1):
 
     if(req.status_code == 429): #Trop de requete
         if(seconds < 20):
-            #On attends et on renvoye une requete
+            #On attends et on renvoie une requete
             time.sleep(seconds)
             return sendRequest(key, QUERRY, VAR, seconds*2)
         else:
@@ -219,6 +219,16 @@ def fetchTournamentsWithOneGame(key : str, Id : int, Latitude : float, Longitude
     return Tournaments_dict
 
 def returnCityNames(input, distMax):
+    """
+    Permet de retourner une liste de noms de ville le plus proche grammaticalement du nom en paramètre
+
+    Args :
+        input : mot ou partie d'un mot
+        distMax : distance max de différences grammaticale
+
+    Returns :
+        Retourne une liste de noms de ville proche grammaticalement de celui rentré en paramètre
+    """
     Cities = []
     with open('villes_france.csv', 'r', encoding='utf-8') as csvfile:
         result = FindClosetList(csv.reader(csvfile, delimiter=','), input, 10, 4, distMax)
@@ -227,6 +237,16 @@ def returnCityNames(input, distMax):
     return Cities
 
 def returnVideoGames(input, distMax):
+    """
+    Permet de retourner une liste de noms de jeu le plus proche grammaticalement du nom en paramètre
+
+    Args :
+        input : mot ou partie d'un mot
+        distMax : distance max de différences grammaticale 
+
+    Returns :
+        Retourne une liste de noms de jeu proche grammaticalement de celui rentré en paramètre
+    """
     Games = []
     with open('games.csv', 'r', encoding='utf-8') as csvfile:
         result = FindClosetList(csv.DictReader(csvfile, delimiter=';'), input, 10, 'name', distMax)
@@ -280,6 +300,19 @@ def returnPlayerWR(key, id):
 
 
 def FindClosetList(dict, input, nElements, key, distMax):
+    """
+    Permet de retourner une liste de noms les plus proche grammaticalement du nom en paramètre
+
+    Args :
+        dict : dictionnaire des différents noms a tester
+        input : mot ou partie d'un mot
+        nElements : nombre d'éléments de la liste de retour
+        key : Clé permetant d'acceder à l'API
+        distMax : distance max de différences grammaticale 
+
+    Returns :
+        Retourne une liste de noms proche grammaticalement de celui rentré en paramètre
+    """
     result = [[None, 0]] * nElements
     for row in dict:
         ratio = lev.ratio(input.lower(), row[key])
