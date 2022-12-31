@@ -33,7 +33,7 @@ def sendRequest(key : str, QUERRY : str, VAR : dict, seconds = 1):
 
     if(req.status_code == 429): #Trop de requete
         if(seconds < 20):
-            #On attends et on renvoye une requete
+            #On attends et on renvoie une requete
             time.sleep(seconds)
             return sendRequest(key, QUERRY, VAR, seconds*2)
         else:
