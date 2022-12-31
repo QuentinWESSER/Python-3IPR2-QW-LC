@@ -13,10 +13,10 @@ layout = html.Div(className="HomePage", children=[
     ]),
     html.Div(className="pageInfo", children=[
         html.H3("Welcome to our website !"),
-        html.H3("This one is separated into 2 parts : "),
-        html.H3("With the <Get Tournaments> button, you will find the tournament you want in the list of tournament on the STARTGG website."),
-        html.H3("With the <ID Tournament> button, you will access tournament's data with its ID."),
-        html.H3("The third button let you reload the list of games."),
+        html.H3("This website is separated into 2 parts : "),
+        html.H3("With the <Get Tournaments> button, you will find the tournament you want in the list of tournament on the StartGG website."),
+        html.H3("With the <Info Tournament> button, you will access tournament's data with its ID."),
+        html.H3("With the <Reload Data> button, you will be able to reload the game list of StartGG"),
     ]),
     html.Div(className="link-btn", children=[
         html.Div(className="page-btn", children=[
@@ -25,11 +25,11 @@ layout = html.Div(className="HomePage", children=[
             ]),
         html.Div(className="page-btn", children=[
             html.Img(className="img", src='assets/img/Information.png'),
-            html.Div(className="btn", children=[html.A(html.Button("ID Tournament"), href="tournament")])
+            html.Div(className="btn", children=[html.A(html.Button("Info Tournament"), href="tournament")])
             ]),
     ]),
     html.Div(className="bottom-bar", children=[
-        html.Div(className="load-btn", children=[html.A(html.Button("reload data", id="load-btn"))]),
+        html.Div(className="load-btn", children=[html.A(html.Button("Reload Data", id="load-btn"))]),
         dcc.Loading(children=[
             html.H2("This could take some time.", id='reloadstate')
         ])

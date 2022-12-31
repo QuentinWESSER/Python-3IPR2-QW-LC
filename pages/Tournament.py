@@ -13,36 +13,38 @@ layout = html.Div(children=[
 
     html.Div(className="IDbar", children=[
         html.H1("ID Tournaments"),
-        dcc.Input(placeholder="Tournament's ID", type='number', id="enter-ID", className="Input")
     ]),
 
     html.Div(className="principalBar", children=[
+        html.Div(className="IDInput", children=[
+            dcc.Input(placeholder="Tournament's ID", type='number', id="enter-ID", className="Input")
+        ]),
 
         html.Div(className="middlebar", children=[
             dcc.Loading(children=[
-                html.Div(className="NameGameInfo", children=[
-                    html.Div(className="row1", children=[html.H2("Name : ")]),
-                    html.Div(className="row2", children=[html.H2("Ratio", id="gamename")]),
+                html.Div(className="Info", children=[
+                    html.Div(className="inline-row-label", children=[html.H2("Name : ")]),
+                    html.Div(className="inline-row", children=[html.H2("Placeholder", id="gamename")]),
                 ]),
-                html.Div(className="AdresseInfo", children=[
-                    html.Div(className="row3", children=[html.H2("Adress : ")]),
-                    html.Div(className="row4", children=[html.H2("Ratio", id="adressTournament")]),
+                html.Div(className="Info", children=[
+                    html.Div(className="inline-row-label", children=[html.H2("Adress : ")]),
+                    html.Div(className="inline-row", children=[html.H2("Placeholder", id="adressTournament")]),
                 ]),
-                html.Div(className="AttendeesInfo", children=[
-                    html.Div(className="row5", children=[html.H2("Number of attendees : ")]),
-                    html.Div(className="row6", children=[html.H2("Ratio", id="attendees")]),
+                html.Div(className="Info", children=[
+                    html.Div(className="inline-row-label", children=[html.H2("Number of attendees : ")]),
+                    html.Div(className="inline-row", children=[html.H2("Placeholder", id="attendees")]),
                 ]),
-                html.Div(className="StartInfo", children=[
-                    html.Div(className="row7", children=[html.H2("Start : ")]),
-                    html.Div(className="row8", children=[html.H2("Ratio", id="startAt")]),
+                html.Div(className="Info", children=[
+                    html.Div(className="inline-row-label", children=[html.H2("Start : ")]),
+                    html.Div(className="inline-row", children=[html.H2("Placeholder", id="startAt")]),
                 ]),
-                html.Div(className="EndInfo", children=[
-                    html.Div(className="row9", children=[html.H2("End : ")]),
-                    html.Div(className="row10", children=[html.H2("Ratio", id="endAt")]),
+                html.Div(className="Info", children=[
+                    html.Div(className="inline-row-label", children=[html.H2("End : ")]),
+                    html.Div(className="inline-row", children=[html.H2("Placeholder", id="endAt")]),
                 ]),
-                html.Div(className="urlInfo", children=[
-                    html.Div(className="row11", children=[html.H2("URL : ")]),
-                    html.Div(className="row12", children=[html.H2("Ratio", id='url')]),
+                html.Div(className="Info", children=[
+                    html.Div(className="inline-row-label", children=[html.H2("URL : ")]),
+                    html.Div(className="inline-row", children=[html.H2("Placeholder", id='url')]),
                 ]),     
             ])
         ]),

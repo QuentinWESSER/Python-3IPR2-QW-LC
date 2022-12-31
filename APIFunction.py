@@ -218,7 +218,7 @@ def fetchTournamentsWithOneGame(key : str, Id : int, Latitude : float, Longitude
         Tournaments['GameID'] = Id
     return Tournaments_dict
 
-def returnCityNames(input, distMax):
+def returnCityNames(input : str, distMax : int):
     """
     Permet de retourner une liste de noms de ville le plus proche grammaticalement du nom en paramètre
 
@@ -236,7 +236,7 @@ def returnCityNames(input, distMax):
             Cities.append([city[0][5], city[0][1], city[0][20], city[0][19]])
     return Cities
 
-def returnVideoGames(input, distMax):
+def returnVideoGames(input : str, distMax : int):
     """
     Permet de retourner une liste de noms de jeu le plus proche grammaticalement du nom en paramètre
 
@@ -254,7 +254,17 @@ def returnVideoGames(input, distMax):
             Games.append([game[0]['id'], game[0]['name'], game[0]['images']])
     return Games
 
-def returnTournament(key, Id):
+def returnTournament(key : str, Id : int):
+    """
+    Permet de retourner une des infos sur un tournois avec son Id
+
+    Args :
+        key : Clé permetant d'acceder à l'API
+        Id : Id du tournois
+
+    Returns :
+        retourner une des infos sur un tournois, si il y a une erreur retourne un message d'erreur
+    """
     var = QTEMP.TOURNAMENT_QUERRY_VAR
     var['TournamentID'] = Id
     Tournament = sendRequest(key, QTEMP.TOURNAMENT_QUERRY, var)
@@ -280,7 +290,17 @@ def returnTournament(key, Id):
     except:
         return 'An error as occured'
 
-def returnPlayerWR(key, id):
+def returnPlayerWR(key : str, id : int):
+    """
+    Permet de retourner le winrate d'un Player
+
+    Args :
+        key : Clé permetant d'acceder à l'API
+        id : Id du Player
+
+    Returns :
+        retourner le Winrate, si il y a une erreur retourne un message d'erreur
+    """
     var = QTEMP.SETS_QUERRY_VAR
     var['PlayerID'] = id
     response = sendRequest(key, QTEMP.SETS_QUERRY, var)
@@ -299,7 +319,7 @@ def returnPlayerWR(key, id):
         return "An error as occured"
 
 
-def FindClosetList(dict, input, nElements, key, distMax):
+def FindClosetList(dict : dict, input: str, nElements : int, key : str, distMax : int):
     """
     Permet de retourner une liste de noms les plus proche grammaticalement du nom en paramètre
 
