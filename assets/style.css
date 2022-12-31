@@ -62,38 +62,34 @@ body {
 }
 
 .sidebar{
-    height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 700px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 15%; /* Stay at the top */
-    left: 0%;
+    left: 1.5%;
     right: 20px;
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding: 16px 20px 16px 36px;   
+    background-color: #fff; 
+    padding: 16px 20px 16px 20px;
+    border-radius: 20px;
 }
 
-.block1{
-    background-color: #EDEDED;
+.InputBlock{
+    background-color: #f4f5f7;
     padding: 10px;
     border-radius : 5px;
 }
 
-.block2{
-    background-color: #EDEDED;
+.OutputBlock{
+    background-color: #fff;
     padding: 10px;
     border-radius : 5px;
-}
-
-.block3{
-    background-color: #EDEDED;
-    padding: 10px;
-    border-radius : 5px;
+    width: 90%;
 }
 
 .rightbar{
-    background-color: #EDEDED;
-    color: #000000;
+    background-color: #f4f5f7;
+    color: #030021;
     padding-left: 50px;
     padding-bottom: 50px;
     margin-left: 800px;
