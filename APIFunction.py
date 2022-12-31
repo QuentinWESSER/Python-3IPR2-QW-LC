@@ -240,19 +240,25 @@ def returnTournament(key, Id):
     Tournament = sendRequest(key, QTEMP.TOURNAMENT_QUERRY, var)
     if Tournament == None:
         return 'Unable to retrieve info'
-    Tournament = Tournament['data']['tournaments']['nodes'][0]
-    Tournament['startAt'] = pd.to_datetime(int(Tournament['startAt']) // 86400 * 86400, unit='s')
-    Tournament['endAt'] = pd.to_datetime(int(Tournament['endAt']) // 86400 * 86400, unit='s')
-    PlayerWRP = []
-    print(Tournament['participants']['nodes'])
-    for player in Tournament['participants']['nodes']:
-        playerP = player['entrants'][0]['seeds'][0]
-        playerWR = returnPlayerWR(key, player['player']['id'])
-        if playerWR != 'NetworkError':
-            PlayerWRP.append({'WR' : playerWR, 'P' : playerP['placement']})
-    del Tournament['participants']
-    Tournament['data'] = PlayerWRP
-    return Tournament
+    try:
+        Tournament = Tournament['data']['tournaments']['nodes'][0]
+        Tournament['startAt'] = pd.to_datetime(int(Tournament['startAt']) // 86400 * 86400, unit='s')
+        Tournament['endAt'] = pd.to_datetime(int(Tournament['endAt']) // 86400 * 86400, unit='s')
+        PlayerWRP = []
+        for player in Tournament['participants']['nodes']:
+            playerP = []
+            try:
+                playerP = player['entrants'][0]['seeds'][0]
+            except:
+                continue
+            playerWR = returnPlayerWR(key, player['player']['id'])
+            if playerWR != 'NetworkError':
+                PlayerWRP.append({'WR' : playerWR, 'P' : playerP['placement']})
+        del Tournament['participants']
+        Tournament['data'] = PlayerWRP
+        return Tournament
+    except:
+        return 'An error as occured'
 
 def returnPlayerWR(key, id):
     var = QTEMP.SETS_QUERRY_VAR
