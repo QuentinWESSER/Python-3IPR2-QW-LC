@@ -18,6 +18,13 @@ layout = html.Div(children=[
         html.H1("Get Tournaments"),
     ]),
     html.Div(className="sidebar", children=[
+        html.Div(className="block3", children=[
+            html.H2("Select a period of time"),
+            html.Div(className="Picker", children=[
+                dcc.DatePickerRange(id="date-picker")
+            ]),
+        ]),
+        html.Br(),
         html.Div(className="block1", children=[
             html.H2("Select a location"),
             html.Div(className="searchbar", children=[
@@ -45,13 +52,6 @@ layout = html.Div(children=[
                 ]),
             ]),
             html.Br(),
-        ]),
-        html.Br(),
-        html.Div(className="block3", children=[
-            html.H2("Select a period of time"),
-            html.Div(className="Picker", children=[
-                dcc.DatePickerRange(id="date-picker")
-            ]),
         ]),
     ]),
 
