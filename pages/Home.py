@@ -1,5 +1,7 @@
 import dash
-from dash import html, dcc
+from dash import html, dcc, callback, Output, Input, State
+from dash.exceptions import PreventUpdate   
+import APIFunction as API
 
 dash.register_page(__name__)
 
@@ -27,7 +29,22 @@ layout = html.Div(className="HomePage", children=[
             ]),
     ]),
     html.Div(className="bottom-bar", children=[
-        html.Div(className="load-btn", children=[html.A(html.Button("reload data"))]),
-        html.H2("This could take some time.")
+        html.Div(className="load-btn", children=[html.A(html.Button("reload data", id="load-btn"))]),
+        dcc.Loading(children=[
+            html.H2("This could take some time.", id='reloadstate')
+        ])
     ])
 ])
+
+@callback(
+    Output('reloadstate', 'children'),
+    Input('load-btn', 'n_clicks'),
+    State("key-data", "data")
+)
+def ReloadGameList(n_clicks, key):
+    if n_clicks is None:
+        raise PreventUpdate
+    response = API.SaveVideoGameAsCSV(key[0], 30_000)
+    if isinstance(response, str):
+        return response
+    return 'The list as been updated'
