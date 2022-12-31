@@ -42,7 +42,18 @@ layout = html.Div(className="HomePage", children=[
     State("key-data", "data")
 )
 def ReloadGameList(n_clicks, key):
+    """
+    Permet de faire d'update la liste des jeux vidéos qui proviens de StartGG
+
+    Args :
+        n_clicks : nombre de click du boutton
+        key : Clé permetant d'acceder à l'API
+
+    Returns :
+        Retourne le status de la fonction
+    """
     if n_clicks is None:
+        #Empeche l'appel au démarrage de la page
         raise PreventUpdate
     response = API.SaveVideoGameAsCSV(key[0], 30_000)
     if isinstance(response, str):
