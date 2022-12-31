@@ -89,19 +89,8 @@ def LoadCity(city_name):
   Input("games", "value")
 )
 def LoadGames(game_name, previous_game):
-    if(game_name != None or game_name == ""):
-        global GamesBuffer
-        previous_game_list = []
-        if previous_game is not None:
-            for element in previous_game:
-                for game in GamesBuffer:
-                    if element == game[1]:
-                        previous_game_list.append(game)
-    
-        GamesBuffer = API.returnVideoGames(game_name, 10)
-        if previous_game_list is not None:
-            GamesBuffer += previous_game_list
-        
+    global GamesBuffer
+    if(game_name == None or game_name == ""):
         GamesBuffer = [i for n, i in enumerate(GamesBuffer) if i not in GamesBuffer[:n]]
         GameName = []
         for game in GamesBuffer:
@@ -115,7 +104,32 @@ def LoadGames(game_name, previous_game):
             "value": game[1],
         })
         return GameName
-    return ['No Result']
+
+
+    previous_game_list = [] 
+    if previous_game is not None:
+        for element in previous_game:
+            for game in GamesBuffer:
+                if element == game[1]:
+                    previous_game_list.append(game)
+
+    GamesBuffer = API.returnVideoGames(game_name, 10)
+    if previous_game_list is not None:
+        GamesBuffer += previous_game_list
+    
+    GamesBuffer = [i for n, i in enumerate(GamesBuffer) if i not in GamesBuffer[:n]]
+    GameName = []
+    for game in GamesBuffer:
+        GameName.append({
+        "label": html.Div(
+            [
+                html.Img(src=game[2], height=20),
+                html.Div(game[1], style={'font-size': 15, 'padding-left': 10}),
+            ], style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}
+        ),
+        "value": game[1],
+    })
+    return GameName
 
 @callback(
     Output('status', 'children'),
